@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Team Setup - Recess Design System</title>
+  <link rel="stylesheet" href="brand/tokens.css">
+  <style>
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    .sidebar .nav-divider {
+      height: 1px;
+      background: var(--color-grey-200);
+      margin: 12px 16px;
+    }
+
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 600px;
+    }
+
+    /* ── Path Cards ──────────────────────────────────────────────────── */
+    .path-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 48px;
+    }
+
+    .path-card {
+      border: 1px solid var(--color-grey-200);
+      border-radius: 16px;
+      padding: 32px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .path-card:hover {
+      border-color: rgba(20, 185, 214, 0.25);
+      box-shadow: 0 4px 20px rgba(20, 185, 214, 0.06);
+    }
+
+    .path-card .path-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .path-badge.cli-badge {
+      background: rgba(10, 15, 26, 0.06);
+      color: var(--color-navy);
+    }
+
+    .path-badge.chat-badge {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-aqua);
+    }
+
+    .path-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+
+    .path-card > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 20px;
+    }
+
+    .path-card .how-it-works {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-grey-500);
+      margin-bottom: 8px;
+    }
+
+    .path-card .flow-text {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-500);
+      font-style: italic;
+      margin-bottom: 0;
+    }
+
+    /* ── Section Headers ─────────────────────────────────────────────── */
+    .section-header {
+      margin-top: 56px;
+      margin-bottom: 24px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .section-header h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 4px;
+    }
+
+    .section-header p {
+      font-size: 14px;
+      color: var(--text-body);
+    }
+
+    /* ── Steps ───────────────────────────────────────────────────────── */
+    .setup-steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+    }
+
+    .setup-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .setup-steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(20, 185, 214, 0.08);
+      color: var(--color-aqua);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .step-content h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 8px;
+    }
+
+    /* ── Code Blocks ─────────────────────────────────────────────────── */
+    .code-block {
+      position: relative;
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+
+    .code-block code {
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+      white-space: pre;
+    }
+
+    .code-block .copy-code-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      font-family: var(--font-family);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--color-aqua);
+      background: rgba(20, 185, 214, 0.06);
+      border: 1px solid rgba(20, 185, 214, 0.12);
+      border-radius: 5px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .code-block .copy-code-btn:hover {
+      background: rgba(20, 185, 214, 0.12);
+    }
+
+    .code-block .copy-code-btn.copied {
+      color: var(--color-forest);
+      background: rgba(31, 187, 166, 0.06);
+      border-color: rgba(31, 187, 166, 0.15);
+    }
+
+    /* ── Project Instructions Box ────────────────────────────────────── */
+    .instructions-box {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-top: 16px;
+    }
+
+    .instructions-box-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 20px;
+      background: var(--color-grey-50);
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .instructions-box-header span {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--color-grey-500);
+    }
+
+    .instructions-box .instructions-content {
+      padding: 20px 24px;
+      max-height: 400px;
+      overflow-y: auto;
+      background: #fafbfc;
+    }
+
+    .instructions-box .instructions-content pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    /* ── Callout ─────────────────────────────────────────────────────── */
+    .callout {
+      display: flex;
+      gap: 14px;
+      padding: 20px;
+      border-radius: 12px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .callout.info {
+      background: rgba(20, 185, 214, 0.04);
+      border: 1px solid rgba(20, 185, 214, 0.12);
+    }
+
+    .callout.success {
+      background: rgba(31, 187, 166, 0.04);
+      border: 1px solid rgba(31, 187, 166, 0.12);
+    }
+
+    .callout .callout-icon {
+      font-size: 18px;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .callout p {
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin: 0;
+    }
+
+    .callout strong {
+      color: var(--text-black);
+    }
+
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .path-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+      <div class="nav-divider"></div>
+      <a href="setup.html" class="active">
+        <span class="nav-icon">&#9881;</span> Team Setup
+      </a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <div class="page-header">
+      <h1>Team Setup</h1>
+      <p>Two ways to get the Recess design system working for your team. Pick the path that matches how you use Claude.</p>
+    </div>
+
+    <!-- ── Two Paths ── -->
+    <div class="path-grid">
+      <div class="path-card">
+        <div class="path-badge cli-badge">&#9000; Terminal</div>
+        <h3>Claude Code (CLI)</h3>
+        <p>Clone the repo and the design skill fires automatically. Zero config. Just say "build me a landing page" and it enforces every brand rule.</p>
+        <div class="how-it-works">How it works</div>
+        <p class="flow-text">Clone repo &rarr; Open Claude Code in the folder &rarr; Ask for a landing page &rarr; Skill auto-triggers &rarr; Brand-consistent output</p>
+      </div>
+
+      <div class="path-card">
+        <div class="path-badge chat-badge">&#9741; Chat</div>
+        <h3>Claude Chat (claude.ai)</h3>
+        <p>Create a Claude Project with the brand rules baked in. Anyone on the team who opens the project gets the design system enforced automatically.</p>
+        <div class="how-it-works">How it works</div>
+        <p class="flow-text">Create project &rarr; Paste instructions &rarr; Share with team &rarr; They just ask &rarr; Brand-consistent output</p>
+      </div>
+    </div>
+
+    <!-- ━━━━━━━ PATH A: CLAUDE CODE ━━━━━━━ -->
+    <div class="section-header">
+      <h2>Path A: Claude Code Setup</h2>
+      <p>For team members who use Claude in the terminal.</p>
+    </div>
+
+    <ol class="setup-steps">
+      <li>
+        <div class="step-content">
+          <h4>Clone the repo</h4>
+          <p>Each team member clones the recess-tools repo to their machine.</p>
+          <div class="code-block">
+            <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+            <code>git clone https://github.com/courtney-recess/recess-tools.git
+cd recess-tools</code>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <h4>Open Claude Code in the folder</h4>
+          <p>Navigate to the recess-tools directory and start Claude Code.</p>
+          <div class="code-block">
+            <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+            <code>claude</code>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <h4>Just ask for what you need</h4>
+          <p>The website-design skill auto-detects when you ask for a landing page and enforces all brand rules. No setup, no prompts to copy.</p>
+          <div class="code-block">
+            <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+            <code>"Build me a dark landing page for our Kraft Heinz partnership"</code>
+          </div>
+          <div class="callout success">
+            <span class="callout-icon">&#10003;</span>
+            <p><strong>That's it.</strong> The skill reads brand tokens, asks 3 clarifying questions, picks the right template, and builds a page that follows every rule. The CLAUDE.md file in the repo handles everything automatically.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <!-- ━━━━━━━ PATH B: CLAUDE CHAT ━━━━━━━ -->
+    <div class="section-header">
+      <h2>Path B: Claude Chat Setup (claude.ai)</h2>
+      <p>For team members who use Claude in the browser. One-time setup, then it works forever.</p>
+    </div>
+
+    <ol class="setup-steps">
+      <li>
+        <div class="step-content">
+          <h4>Create a new Claude Project</h4>
+          <p>Go to <strong>claude.ai</strong> &rarr; Click <strong>Projects</strong> in the sidebar &rarr; Click <strong>Create Project</strong> &rarr; Name it <strong>"Recess Website Builder"</strong></p>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <h4>Paste the project instructions</h4>
+          <p>Click <strong>Set custom instructions</strong> and paste the entire block below. This gives Claude all the brand rules, tokens, and enforcement logic.</p>
+          <div class="instructions-box">
+            <div class="instructions-box-header">
+              <span>Project Instructions</span>
+              <button class="copy-code-btn" onclick="copyInstructions(this)" style="position:static;">Copy All</button>
+            </div>
+            <div class="instructions-content">
+              <pre id="project-instructions">You are a Recess brand website builder. When anyone asks you to build a landing page, website, or web page, you MUST follow these rules exactly. No exceptions.
+
+## Step 1: Ask 3 Questions First
+
+Before writing any code, ask:
+
+1. **Who's the partner?** (Partner name, "Recess internal", or Generic)
+2. **What's the goal?** (Brand awareness, Lead generation, Case study, Event promotion)
+3. **Which theme?** (Dark, Light, or Custom partner theme)
+
+## Brand Tokens (Source of Truth)
+
+### Colors
+| Token | Value | Usage |
+|-------|-------|-------|
+| Aqua (primary) | #14B9D6 | CTAs, accents, section labels, nav highlights |
+| Sea Green | #108DA3 | Hover state on dark backgrounds |
+| Orange | #ff8900 | Hover state on light backgrounds |
+| Forest | #1FBBA6 | Success states, secondary accent |
+| Burnt Orange | #F27935 | Warm accent |
+| Navy | #0a0f1a | Dark theme background |
+| Navy Light | #0d1525 | Card backgrounds on dark |
+| Navy Deep | #060b15 | Footer on dark |
+| Grey 50 | #F9FAFB | Light theme subtle bg |
+| Grey 200 | #DBE1E8 | Borders |
+| Grey 500 | #5F6E81 | Secondary text |
+| Grey 800 | #323A45 | Dark text on light bg |
+
+Text on dark: rgba(255,255,255,0.85) body, rgba(255,255,255,0.60) secondary, rgba(255,255,255,0.25) muted
+Text on light: #000000 headlines, #767676 body, #ababab captions
+
+### Typography
+- Font: Inter only (Google Fonts, weights 400-900)
+- Hero headline: clamp(42px, 6vw, 76px) weight 900, letter-spacing -2px, line-height 1.1
+- Hero subhead: clamp(18px, 1.5vw, 24px) weight 400, line-height 1.7
+- Section label: 11px uppercase, letter-spacing 2px, aqua color
+- Section title: clamp(28px, 3.5vw, 44px) weight 800, letter-spacing -0.5px
+- Body: 16px weight 400, line-height 1.7
+- Never use any other font
+
+### Layout
+- Max content width: 1160px centered
+- Hero text max-width: 680px
+- Section padding: 100px top/bottom, 48px left/right
+- Mobile section padding: 60px top/bottom, 24px left/right
+- Stack to single column at 900px, tighten at 600px
+
+### Effects
+- Glassmorphism nav: backdrop-filter blur(12px), bg rgba(10,15,26,0.75) dark / rgba(255,255,255,0.80) light
+- Button hover: color shift + translateY(-1px) + shadow 0 0 32px rgba(20,185,214,0.40)
+- Card hover: border glow rgba(20,185,214,0.15) + translateY(-3px)
+- Image hover: scale(1.04) with overflow hidden
+- All transitions: 0.2-0.4s ease
+
+### Photography
+- Always overlay images, never bare photos as backgrounds
+- Aqua overlay: rgba(20,185,214,0.20) + Grey overlay: rgba(0,0,0,0.50)
+
+### Logo Rules
+- Dark backgrounds: white logo (full wordmark + icon) at 28px nav / 48px display
+- Light backgrounds: aqua logo (full wordmark + icon)
+- NEVER recreate as text, NEVER alter/rotate/recolor
+- 150% clearance around logo
+
+### Brand Voice
+- Playful, confident, inclusive, wellness-forward
+- Casual but informed, optimistic without hype, direct not corporate
+- Active voice, short sentences, plain language
+
+## Theme Specs
+
+### Dark Theme (Default)
+Background #0a0f1a, glassmorphism nav, hero 88vh, cards rgba(255,255,255,0.03) bg + rgba(255,255,255,0.06) border, hover Sea Green #108DA3
+
+### Light Theme
+Background #ffffff, white blur nav, hero 80vh, cards white bg + #DBE1E8 border, hover Orange #ff8900
+
+### Partner Theme
+Dark base + partner accent color supplements (never replaces) aqua. "Recess x [Partner]" format. Recess logo always in nav + footer.
+
+## Required Sections (Every Page)
+1. Nav (fixed, glassmorphism/white blur, logo left, CTA right)
+2. Hero (headline + subhead + CTA, 88vh dark / 80vh light)
+3. At least 2 content sections
+4. CTA section near bottom
+5. Footer (logo, copyright)
+
+## Output Rules
+1. Single self-contained HTML file, all CSS inline
+2. Only external dep: Google Fonts Inter import
+3. Every color from token list, no random hex codes
+4. Responsive at 1440px, 900px, 600px
+5. All hover effects included
+6. Photography overlays on every background image
+
+## Enforcement (Non-Negotiable)
+STOP and fix if you catch: non-Inter font, unlisted color, missing nav/hero/CTA/footer, bare image, multi-file output, text logo, no responsive breakpoints.</pre>
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <h4>Share the project with your team</h4>
+          <p>Click the <strong>Share</strong> button on the project and invite your team members. They'll all get the same brand-enforced experience.</p>
+        </div>
+      </li>
+      <li>
+        <div class="step-content">
+          <h4>Start building</h4>
+          <p>Anyone in the project just asks for what they need. Claude already knows all the rules.</p>
+          <div class="code-block">
+            <button class="copy-code-btn" onclick="copyCode(this)">Copy</button>
+            <code>"Build me a light landing page for our summer wellness campaign"</code>
+          </div>
+          <div class="callout info">
+            <span class="callout-icon">&#9432;</span>
+            <p><strong>Tip:</strong> You can also use the <a href="templates.html" style="color: var(--color-aqua);">copy-paste prompts on the Templates page</a> for one-off builds outside the project. They include all the same brand rules inline.</p>
+          </div>
+        </div>
+      </li>
+    </ol>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Team Setup
+    </div>
+  </main>
+
+  <script>
+    function copyCode(btn) {
+      var code = btn.parentElement.querySelector('code');
+      navigator.clipboard.writeText(code.textContent).then(function() {
+        btn.classList.add('copied');
+        btn.textContent = 'Copied!';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btn.textContent = 'Copy';
+        }, 2000);
+      });
+    }
+
+    function copyInstructions(btn) {
+      var pre = document.getElementById('project-instructions');
+      navigator.clipboard.writeText(pre.textContent).then(function() {
+        btn.classList.add('copied');
+        btn.textContent = 'Copied!';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btn.textContent = 'Copy All';
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
