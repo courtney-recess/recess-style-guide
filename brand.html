@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brand Foundation - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 56px;
+    }
+
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Section ──────────────────────────────────────────────────────── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Statement Block ─────────────────────────────────────────────── */
+    .statement-block {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 14px;
+      padding: 32px;
+      margin-bottom: 24px;
+    }
+
+    .statement-block .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 10px;
+    }
+
+    .statement-block p {
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.5;
+      color: var(--text-black);
+      letter-spacing: -0.2px;
+    }
+
+    /* ── Personality & Tone Cards ─────────────────────────────────────── */
+    .trait-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .trait-chip {
+      background: rgba(20, 185, 214, 0.07);
+      border: 1px solid rgba(20, 185, 214, 0.15);
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-sea-green);
+      letter-spacing: -0.1px;
+    }
+
+    .tone-chip {
+      background: rgba(242, 121, 53, 0.06);
+      border: 1px solid rgba(242, 121, 53, 0.15);
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-burnt-orange);
+      letter-spacing: -0.1px;
+    }
+
+    .language-chip {
+      background: rgba(31, 187, 166, 0.07);
+      border: 1px solid rgba(31, 187, 166, 0.15);
+      border-radius: 10px;
+      padding: 12px 22px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--color-forest);
+      letter-spacing: -0.1px;
+    }
+
+    /* ── Values Cards ────────────────────────────────────────────────── */
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .value-card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: 14px;
+      padding: 28px;
+      transition: all 0.25s ease;
+    }
+
+    .value-card:hover {
+      border-color: rgba(20, 185, 214, 0.25);
+      box-shadow: 0 4px 20px rgba(20, 185, 214, 0.06);
+      transform: translateY(-1px);
+    }
+
+    .value-card h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      letter-spacing: -0.1px;
+    }
+
+    .value-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin: 0;
+    }
+
+    .value-card .value-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: rgba(20, 185, 214, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      margin-bottom: 14px;
+    }
+
+    /* ── Logo Guidelines ─────────────────────────────────────────────── */
+    .logo-rules {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .logo-rule {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .logo-rule .rule-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+
+    .logo-rule .rule-icon.do {
+      background: rgba(52, 211, 153, 0.12);
+      color: #059669;
+    }
+
+    .logo-rule .rule-icon.dont {
+      background: rgba(239, 68, 68, 0.10);
+      color: #dc2626;
+    }
+
+    .logo-rule p {
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--color-grey-500);
+      margin: 0;
+    }
+
+    .logo-rule p strong {
+      color: var(--text-black);
+    }
+
+    /* ── Logo Preview ─────────────────────────────────────────────────── */
+    .logo-previews {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .logo-preview-box {
+      height: 120px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+    }
+
+    .logo-preview-box.on-light {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      color: var(--color-aqua);
+    }
+
+    .logo-preview-box.on-aqua {
+      background: var(--color-aqua);
+      color: #ffffff;
+    }
+
+    .logo-preview-box.on-dark {
+      background: var(--color-navy);
+      color: #ffffff;
+    }
+
+    .logo-preview-label {
+      font-size: 12px;
+      color: var(--text-body);
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .values-grid { grid-template-columns: 1fr; }
+      .logo-rules { grid-template-columns: 1fr; }
+      .logo-previews { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html" class="active">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <div class="label">Foundation</div>
+      <h1>Brand</h1>
+      <p>The strategic foundation behind every design decision. Our purpose, personality, and values shape the way Recess looks, sounds, and feels.</p>
+    </div>
+
+    <!-- Purpose -->
+    <section class="section">
+      <div class="statement-block">
+        <div class="label">Purpose</div>
+        <p>To make sponsorship easy, efficient and stress-free.</p>
+      </div>
+      <div class="statement-block">
+        <div class="label">Vision</div>
+        <p>Programmatic buying for the $62B live events sponsorship market.</p>
+      </div>
+    </section>
+
+    <!-- Personality -->
+    <section class="section">
+      <h2 class="section-title">Personality</h2>
+      <p class="section-desc">The five traits that define how Recess shows up in the world. Every word, color, and interaction should feel like this.</p>
+      <div class="trait-grid">
+        <div class="trait-chip">Playful</div>
+        <div class="trait-chip">Intuitive</div>
+        <div class="trait-chip">Savvy</div>
+        <div class="trait-chip">Inclusive</div>
+        <div class="trait-chip">Transparent</div>
+      </div>
+    </section>
+
+    <!-- Tone -->
+    <section class="section">
+      <h2 class="section-title">Tone of Voice</h2>
+      <p class="section-desc">How we sound when we speak. Recess copy is never stiff, corporate, or jargon-heavy.</p>
+      <div class="trait-grid">
+        <div class="tone-chip">Approachable</div>
+        <div class="tone-chip">Down-to-Earth</div>
+        <div class="tone-chip">Friendly</div>
+        <div class="tone-chip">Smart</div>
+        <div class="tone-chip">Youthful</div>
+      </div>
+    </section>
+
+    <!-- Language -->
+    <section class="section">
+      <h2 class="section-title">Language Style</h2>
+      <p class="section-desc">The register and vocabulary we reach for. Plain English, always.</p>
+      <div class="trait-grid">
+        <div class="language-chip">Colloquial</div>
+        <div class="language-chip">Conversational</div>
+        <div class="language-chip">Informational</div>
+      </div>
+    </section>
+
+    <!-- Brand Values -->
+    <section class="section">
+      <h2 class="section-title">Brand Values</h2>
+      <p class="section-desc">The six pillars that guide our decisions, our culture, and our product.</p>
+      <div class="values-grid">
+        <div class="value-card">
+          <div class="value-icon">&#127917;</div>
+          <h4>We Bring People Together Through Experiences</h4>
+          <p>Live events create real human connection. Everything we build is in service of making those moments happen more easily and more often.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#127793;</div>
+          <h4>We Remember Our Roots</h4>
+          <p>We started as event organizers and sponsors ourselves. That first-hand experience keeps us grounded and honest about what the industry actually needs.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#128295;</div>
+          <h4>We Are Scrappy</h4>
+          <p>We move fast, think creatively, and ship with urgency. Resourcefulness beats perfection every time.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#9878;&#65039;</div>
+          <h4>We Are Balanced</h4>
+          <p>Hard work matters, but so does rest. We protect sustainable pace because burned-out teams don't build great products.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#127881;</div>
+          <h4>We Have Fun</h4>
+          <p>Our industry is literally about fun. If the work itself doesn't spark joy, something's off. We celebrate wins, crack jokes, and never take ourselves too seriously.</p>
+        </div>
+        <div class="value-card">
+          <div class="value-icon">&#128218;</div>
+          <h4>We Are Lifelong Learners</h4>
+          <p>Curiosity is a core competency. We ask questions, share knowledge freely, and treat every failure as a lesson.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Logo Guidelines -->
+    <section class="section">
+      <h2 class="section-title">Logo Guidelines</h2>
+      <p class="section-desc">How to use the Recess wordmark consistently across all touchpoints.</p>
+
+      <div class="logo-previews">
+        <div>
+          <div class="logo-preview-box on-light"><img src="assets/logo-full-aqua.png" alt="Recess" style="height: 48px;"></div>
+          <p class="logo-preview-label">Aqua on white (preferred)</p>
+        </div>
+        <div>
+          <div class="logo-preview-box on-aqua"><img src="assets/logo-full-white.png" alt="Recess" style="height: 48px;"></div>
+          <p class="logo-preview-label">White on aqua</p>
+        </div>
+        <div>
+          <div class="logo-preview-box on-dark"><img src="assets/logo-full-white.png" alt="Recess" style="height: 48px;"></div>
+          <p class="logo-preview-label">White on dark</p>
+        </div>
+      </div>
+
+      <div class="logo-rules">
+        <div class="logo-rule">
+          <div class="rule-icon do">&#10003;</div>
+          <p><strong>Preferred placement</strong><br>Use on white or light backgrounds, or on the Aqua brand color.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="rule-icon do">&#10003;</div>
+          <p><strong>Dark backgrounds</strong><br>Use the white version of the logo on navy or dark photography.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="rule-icon do">&#10003;</div>
+          <p><strong>Clear space</strong><br>Maintain 150% of the logo width as clear space on all sides.</p>
+        </div>
+        <div class="logo-rule">
+          <div class="rule-icon dont">&#10007;</div>
+          <p><strong>Never alter the logo</strong><br>Do not rotate, stretch, skew, recolor, add effects, or modify the wordmark in any way.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Brand Foundation
+    </div>
+  </main>
+</body>
+</html>

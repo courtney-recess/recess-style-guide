@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colors - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 56px;
+    }
+
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Section ──────────────────────────────────────────────────────── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Swatch Grid ─────────────────────────────────────────────────── */
+    .swatch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: 16px;
+    }
+
+    .swatch {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--color-grey-200);
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .swatch:hover {
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+      transform: translateY(-1px);
+    }
+
+    .swatch-color {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .swatch-color.light-text {
+      color: #ffffff;
+    }
+
+    .swatch-color.dark-text {
+      color: rgba(0, 0, 0, 0.7);
+    }
+
+    .swatch-info {
+      padding: 14px 16px;
+      background: #ffffff;
+    }
+
+    .swatch-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-black);
+      margin-bottom: 4px;
+    }
+
+    .swatch-meta {
+      font-size: 12px;
+      color: var(--text-body);
+      line-height: 1.5;
+    }
+
+    .swatch-var {
+      font-size: 11px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      color: var(--color-aqua);
+      margin-top: 4px;
+      background: rgba(20, 185, 214, 0.06);
+      padding: 3px 8px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ── Dark Swatch Grid ────────────────────────────────────────────── */
+    .swatch-grid-dark .swatch {
+      border-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .swatch-grid-dark .swatch-info {
+      background: var(--color-grey-50);
+    }
+
+    /* ── Text Preview ────────────────────────────────────────────────── */
+    .text-preview {
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--color-grey-200);
+      margin-bottom: 24px;
+    }
+
+    .text-preview-dark {
+      background: var(--color-navy);
+      padding: 32px;
+    }
+
+    .text-preview-light {
+      background: #ffffff;
+      padding: 32px;
+    }
+
+    .text-sample {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .text-sample:last-child {
+      border-bottom: none;
+    }
+
+    .text-sample-text {
+      font-size: 16px;
+      font-weight: 500;
+    }
+
+    .text-sample-meta {
+      font-size: 12px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      opacity: 0.5;
+    }
+
+    .text-preview-light .text-sample {
+      border-bottom-color: var(--color-grey-200);
+    }
+
+    /* ── Usage Notes ──────────────────────────────────────────────────── */
+    .usage-notes {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+
+    .usage-notes h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+      letter-spacing: -0.1px;
+    }
+
+    .usage-notes ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .usage-notes li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      padding: 6px 0;
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .usage-notes li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 14px;
+      width: 8px;
+      height: 8px;
+      border-radius: 2px;
+    }
+
+    .usage-notes li.aqua::before { background: var(--color-aqua); }
+    .usage-notes li.orange::before { background: var(--color-burnt-orange); }
+    .usage-notes li.forest::before { background: var(--color-forest); }
+    .usage-notes li.navy::before { background: var(--color-navy); }
+    .usage-notes li.grey::before { background: var(--color-grey-500); }
+
+    .usage-notes li strong {
+      color: var(--text-black);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .swatch-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html" class="active">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <div class="label">Visual Identity</div>
+      <h1>Color Palette</h1>
+      <p>Every color in the Recess system with hex codes, RGB values, and CSS custom property names. Click any swatch to copy its value.</p>
+    </div>
+
+    <!-- Primary Colors -->
+    <section class="section">
+      <h2 class="section-title">Primary Colors</h2>
+      <p class="section-desc">The core brand palette. Aqua is the dominant brand color, used for CTAs, links, and key interactive elements.</p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #14B9D6;">#14B9D6</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Aqua</div>
+            <div class="swatch-meta">RGB 20, 185, 214</div>
+            <div class="swatch-var">--color-aqua</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #108DA3;">#108DA3</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Sea Green</div>
+            <div class="swatch-meta">RGB 16, 141, 163</div>
+            <div class="swatch-var">--color-sea-green</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #1FBBA6;">#1FBBA6</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Forest</div>
+            <div class="swatch-meta">RGB 31, 187, 166</div>
+            <div class="swatch-var">--color-forest</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #F27935;">#F27935</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Burnt Orange</div>
+            <div class="swatch-meta">RGB 242, 121, 53</div>
+            <div class="swatch-var">--color-burnt-orange</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #ff8900;">#FF8900</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Orange</div>
+            <div class="swatch-meta">RGB 255, 137, 0</div>
+            <div class="swatch-var">--color-orange</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark Palette -->
+    <section class="section">
+      <h2 class="section-title">Dark Palette</h2>
+      <p class="section-desc">Background colors for dark-themed sections and the primary site background on dark pages.</p>
+      <div class="swatch-grid swatch-grid-dark">
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #0a0f1a;">#0A0F1A</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy</div>
+            <div class="swatch-meta">RGB 10, 15, 26</div>
+            <div class="swatch-var">--color-navy</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #0d1525;">#0D1525</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Light</div>
+            <div class="swatch-meta">RGB 13, 21, 37</div>
+            <div class="swatch-var">--color-navy-light</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #060b15;">#060B15</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Deep</div>
+            <div class="swatch-meta">RGB 6, 11, 21</div>
+            <div class="swatch-var">--color-navy-deep</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #111827;">#111827</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Navy Muted</div>
+            <div class="swatch-meta">RGB 17, 24, 39</div>
+            <div class="swatch-var">--color-navy-muted</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Grey Scale -->
+    <section class="section">
+      <h2 class="section-title">Grey Scale</h2>
+      <p class="section-desc">Neutral tones for backgrounds, borders, secondary text, and UI chrome.</p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color dark-text" style="background: #F9FAFB;">#F9FAFB</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Grey 50</div>
+            <div class="swatch-meta">RGB 249, 250, 251</div>
+            <div class="swatch-var">--color-grey-50</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color dark-text" style="background: #DBE1E8;">#DBE1E8</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Grey 200</div>
+            <div class="swatch-meta">RGB 219, 225, 232</div>
+            <div class="swatch-var">--color-grey-200</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #5F6E81;">#5F6E81</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Grey 500</div>
+            <div class="swatch-meta">RGB 95, 110, 129</div>
+            <div class="swatch-var">--color-grey-500</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #323A45;">#323A45</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Grey 800</div>
+            <div class="swatch-meta">RGB 50, 58, 69</div>
+            <div class="swatch-var">--color-grey-800</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Accent Colors -->
+    <section class="section">
+      <h2 class="section-title">Accent Colors</h2>
+      <p class="section-desc">Used sparingly for status indicators, highlights, and special callouts.</p>
+      <div class="swatch-grid">
+        <div class="swatch">
+          <div class="swatch-color light-text" style="background: #34d399;">#34D399</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Green</div>
+            <div class="swatch-meta">RGB 52, 211, 153</div>
+            <div class="swatch-var">--color-accent-green</div>
+          </div>
+        </div>
+        <div class="swatch">
+          <div class="swatch-color dark-text" style="background: #fbbf24;">#FBBF24</div>
+          <div class="swatch-info">
+            <div class="swatch-name">Gold</div>
+            <div class="swatch-meta">RGB 251, 191, 36</div>
+            <div class="swatch-var">--color-accent-gold</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text Colors - Dark Theme -->
+    <section class="section">
+      <h2 class="section-title">Text Colors &mdash; Dark Theme</h2>
+      <p class="section-desc">White text at varying opacities on dark backgrounds. Used for hierarchy on navy sections.</p>
+      <div class="text-preview">
+        <div class="text-preview-dark">
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,1);">Primary text at 100% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,0.85);">Secondary text at 85% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white-85</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,0.60);">Tertiary text at 60% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white-60</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,0.55);">Muted text at 55% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white-55</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,0.25);">Disabled text at 25% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white-25</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: rgba(255,255,255,0.15);">Ghost text at 15% opacity</span>
+            <span class="text-sample-meta" style="color: rgba(255,255,255,0.4);">--text-white-15</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Text Colors - Light Theme -->
+    <section class="section">
+      <h2 class="section-title">Text Colors &mdash; Light Theme</h2>
+      <p class="section-desc">Dark text values for white and light backgrounds. Used on landing pages and documentation.</p>
+      <div class="text-preview">
+        <div class="text-preview-light" style="border: 1px solid var(--color-grey-200); border-radius: 14px;">
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: #000000;">Primary text &mdash; Black</span>
+            <span class="text-sample-meta" style="color: var(--text-placeholder);">--text-black &middot; #000000</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: #767676;">Body text &mdash; Grey</span>
+            <span class="text-sample-meta" style="color: var(--text-placeholder);">--text-body &middot; #767676</span>
+          </div>
+          <div class="text-sample">
+            <span class="text-sample-text" style="color: #ababab;">Placeholder text</span>
+            <span class="text-sample-meta" style="color: var(--text-placeholder);">--text-placeholder &middot; #ABABAB</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Notes -->
+    <section class="section">
+      <h2 class="section-title">Usage Guidelines</h2>
+      <div class="usage-notes">
+        <h4>When to Use Each Color</h4>
+        <ul>
+          <li class="aqua"><strong>Aqua</strong> &mdash; Primary CTAs, links, interactive highlights, section labels, brand moments. This is the signature Recess color.</li>
+          <li class="aqua"><strong>Sea Green</strong> &mdash; Hover states for aqua elements. Never used as a standalone brand color.</li>
+          <li class="forest"><strong>Forest</strong> &mdash; Success states, secondary accent. Use when aqua would cause visual overload.</li>
+          <li class="orange"><strong>Burnt Orange / Orange</strong> &mdash; Secondary CTAs, pricing highlights, urgency indicators. Use sparingly to avoid competing with aqua.</li>
+          <li class="navy"><strong>Navy palette</strong> &mdash; Page backgrounds on dark-theme sections. Navy is the default dark body background, Navy Light for elevated cards.</li>
+          <li class="grey"><strong>Greys</strong> &mdash; Grey 50 for light section backgrounds, Grey 200 for borders, Grey 500 for secondary text, Grey 800 for dark text on light backgrounds.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Color Palette
+    </div>
+  </main>
+</body>
+</html>

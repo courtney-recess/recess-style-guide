@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CUSTOMIZE: Partner name in title -->
+  <title>Recess x Partner Name - Landing Page</title>
+  <link rel="stylesheet" href="../../../brand/tokens.css">
+  <!--
+    ╔══════════════════════════════════════════════════════════════════════╗
+    ║  RECESS PARTNER LANDING PAGE TEMPLATE                              ║
+    ║                                                                    ║
+    ║  HOW TO CUSTOMIZE THIS TEMPLATE:                                   ║
+    ║                                                                    ║
+    ║  1. PARTNER COLOR:                                                 ║
+    ║     Search for "PARTNER COLOR" comments below.                     ║
+    ║     Replace #14B9D6 (Recess aqua) with the partner's brand color.  ║
+    ║     This affects: badges, section labels, stat values, card icons, ║
+    ║     button backgrounds, and glow shadows.                          ║
+    ║                                                                    ║
+    ║  2. CONTENT:                                                       ║
+    ║     Search for "CUSTOMIZE" comments to find all placeholder text.  ║
+    ║     Replace with partner-specific content.                         ║
+    ║                                                                    ║
+    ║  3. IMAGES:                                                        ║
+    ║     Add partner logo in the nav (replace text brand).              ║
+    ║     Add product/lifestyle images to the hero or card sections.     ║
+    ║                                                                    ║
+    ║  4. THEME:                                                         ║
+    ║     This template uses the DARK theme by default.                  ║
+    ║     For a light theme, refer to template-light.html instead.       ║
+    ╚══════════════════════════════════════════════════════════════════════╝
+  -->
+  <style>
+    /* ==========================================================================
+       RECESS Partner Landing Page Template
+       Based on dark theme with customizable partner accent color.
+       ========================================================================== */
+
+    /* ── PARTNER COLOR: Change this one value to set the partner accent ── */
+    :root {
+      /* PARTNER COLOR: Replace #14B9D6 with partner accent color */
+      --partner-accent: #14B9D6;
+      --partner-accent-hover: #108DA3;
+
+      /* PARTNER COLOR: Update glow shadows to match partner color
+         Replace rgba(20, 185, 214, ...) with partner color at same opacities */
+      --partner-glow: 0 0 24px rgba(20, 185, 214, 0.25);
+      --partner-glow-hover: 0 0 32px rgba(20, 185, 214, 0.40);
+      --partner-badge-bg: rgba(20, 185, 214, 0.10);
+      --partner-badge-border: rgba(20, 185, 214, 0.20);
+    }
+
+    /* ── Page ────────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background-color: var(--color-navy);
+      color: var(--text-white-85);
+    }
+
+    /* ── Navigation — Glassmorphism ──────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px var(--spacing-section-x);
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: var(--border-subtle);
+    }
+
+    .nav__brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text-white);
+      text-decoration: none;
+    }
+
+    /* PARTNER COLOR: Optionally color the brand text with partner accent */
+    .nav__brand span {
+      color: var(--partner-accent);
+    }
+
+    .nav__links {
+      display: flex;
+      gap: var(--spacing-gap);
+      list-style: none;
+    }
+
+    .nav__link {
+      color: var(--text-white-60);
+      text-decoration: none;
+      font-size: var(--font-size-body-small);
+      font-weight: var(--font-weight-medium);
+      transition: color var(--transition-fast);
+    }
+
+    .nav__link:hover {
+      color: var(--text-white);
+    }
+
+    /* ── Buttons — Partner colored ───────────────────────────────────── */
+    .btn-primary {
+      /* PARTNER COLOR: Replace background and shadow */
+      background: var(--partner-accent);
+      box-shadow: var(--partner-glow);
+    }
+
+    .btn-primary:hover {
+      /* PARTNER COLOR: Replace hover background and shadow */
+      background: var(--partner-accent-hover);
+      box-shadow: var(--partner-glow-hover);
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 88vh;
+      padding: 0 var(--spacing-section-x);
+      text-align: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: var(--font-size-caption);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      border-radius: var(--radius-badge);
+      /* PARTNER COLOR: Badge uses partner accent */
+      background: var(--partner-badge-bg);
+      color: var(--partner-accent);
+      border: 1px solid var(--partner-badge-border);
+      margin-bottom: var(--spacing-gap);
+    }
+
+    .hero__title {
+      font-size: var(--font-size-hero);
+      font-weight: var(--font-weight-extrabold);
+      line-height: var(--line-height-tight);
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-white);
+      max-width: var(--max-width-hero-text);
+    }
+
+    .hero__subtitle {
+      font-size: var(--font-size-hero-sub);
+      color: var(--text-white-60);
+      line-height: var(--line-height-relaxed);
+      max-width: 560px;
+      margin-top: var(--spacing-gap);
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: var(--spacing-gap-md);
+      margin-top: 36px;
+    }
+
+    /* ── Sections ────────────────────────────────────────────────────── */
+    .section {
+      padding: var(--spacing-section-y) var(--spacing-section-x);
+      max-width: var(--max-width-content);
+      margin: 0 auto;
+    }
+
+    .section__label {
+      font-size: var(--font-size-section-label);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-widest);
+      text-transform: uppercase;
+      /* PARTNER COLOR: Section labels use partner accent */
+      color: var(--partner-accent);
+      margin-bottom: var(--spacing-gap-sm);
+    }
+
+    .section__title {
+      font-size: var(--font-size-section-title);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-snug);
+      color: var(--text-white);
+      margin-bottom: var(--spacing-gap);
+    }
+
+    .section__description {
+      font-size: var(--font-size-body);
+      color: var(--text-white-55);
+      line-height: var(--line-height-relaxed);
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Card Grid ───────────────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-gap);
+    }
+
+    .card {
+      background: var(--color-navy-light);
+      border: var(--border-subtle);
+      border-radius: var(--radius-card);
+      padding: var(--spacing-card-padding);
+      transition: border-color var(--transition-base),
+                  transform var(--transition-base),
+                  box-shadow var(--transition-base);
+    }
+
+    .card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: var(--hover-lift);
+      box-shadow: var(--shadow-card);
+    }
+
+    .card__icon {
+      font-size: 28px;
+      margin-bottom: var(--spacing-gap-md);
+      /* PARTNER COLOR: Card icons use partner accent */
+      color: var(--partner-accent);
+    }
+
+    .card__title {
+      font-size: var(--font-size-body);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-white);
+      margin-bottom: var(--spacing-gap-sm);
+    }
+
+    .card__text {
+      font-size: var(--font-size-body-small);
+      color: var(--text-white-55);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* ── Stats ───────────────────────────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-gap);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .stat__value {
+      font-size: var(--font-size-section-title);
+      font-weight: var(--font-weight-extrabold);
+      /* PARTNER COLOR: Stat values use partner accent */
+      color: var(--partner-accent);
+      line-height: var(--line-height-tight);
+    }
+
+    .stat__label {
+      font-size: var(--font-size-body-small);
+      color: var(--text-white-55);
+      margin-top: 4px;
+    }
+
+    /* ── CTA Section ─────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: var(--spacing-section-y) var(--spacing-section-x);
+      max-width: var(--max-width-content);
+      margin: 0 auto;
+    }
+
+    .cta-section .section__title {
+      max-width: 600px;
+      margin: 0 auto var(--spacing-gap);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    .footer {
+      padding: 48px var(--spacing-section-x);
+      border-top: var(--border-subtle);
+      text-align: center;
+    }
+
+    .footer__text {
+      font-size: var(--font-size-caption);
+      color: var(--text-white-25);
+    }
+
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-gap);
+      margin-top: var(--spacing-gap-md);
+      list-style: none;
+    }
+
+    .footer__link {
+      font-size: var(--font-size-caption);
+      color: var(--text-white-25);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer__link:hover {
+      color: var(--text-white-60);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav {
+        padding: 12px var(--spacing-section-x-mobile);
+      }
+
+      .hero {
+        min-height: 70vh;
+        padding: 0 var(--spacing-section-x-mobile);
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section {
+        padding: var(--spacing-section-y-mobile) var(--spacing-section-x-mobile);
+      }
+
+      .card-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: var(--spacing-section-y-mobile) var(--spacing-section-x-mobile);
+      }
+
+      .footer {
+        padding: 36px var(--spacing-section-x-mobile);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       NAVIGATION — Glassmorphism dark nav
+       ══════════════════════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <!-- CUSTOMIZE: Partner name / logo
+         Replace with partner logo: <img src="partner-logo.svg" style="height: 28px;" alt="Partner"> -->
+    <a href="#" class="nav__brand"><img src="../../../brand/logo-full-white.png" alt="Recess" style="height: 28px;"> <span>x Partner</span></a>
+    <ul class="nav__links">
+      <!-- CUSTOMIZE: Navigation links -->
+      <li><a class="nav__link" href="#features">Features</a></li>
+      <li><a class="nav__link" href="#stats">Results</a></li>
+      <li><a class="nav__link" href="#cta">Get Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       HERO — 88vh centered content
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- CUSTOMIZE: Badge text (e.g., "Recess x Partner Name") -->
+    <div class="hero__badge">Recess x Partner</div>
+
+    <!-- CUSTOMIZE: Headline (partner-specific value prop) -->
+    <h1 class="hero__title">Partner Headline Goes Here</h1>
+
+    <!-- CUSTOMIZE: Subheadline -->
+    <p class="hero__subtitle">A brief co-branded description that communicates the partnership value. Keep it focused on what the audience gets.</p>
+
+    <div class="hero__actions">
+      <!-- CUSTOMIZE: Button text and links -->
+      <a href="#cta" class="btn-primary">Get Started</a>
+      <a href="#features" class="btn-ghost">Learn More</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FEATURES — Card grid section
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="features">
+    <!-- CUSTOMIZE: Section label -->
+    <div class="section__label">Partnership Benefits</div>
+
+    <!-- CUSTOMIZE: Section title -->
+    <h2 class="section__title">Why This Partnership Matters</h2>
+
+    <!-- CUSTOMIZE: Section description -->
+    <p class="section__description">Brief overview of the partnership benefits. Focus on what makes this collaboration unique and valuable.</p>
+
+    <div class="card-grid">
+      <!-- CUSTOMIZE: Card content (duplicate/remove cards as needed) -->
+      <div class="card">
+        <div class="card__icon">&#9733;</div>
+        <h3 class="card__title">Benefit One</h3>
+        <p class="card__text">Describe the first key benefit of this partnership. Keep text to 2-3 sentences.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon">&#9830;</div>
+        <h3 class="card__title">Benefit Two</h3>
+        <p class="card__text">Describe the second key benefit of this partnership. Keep text to 2-3 sentences.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon">&#10026;</div>
+        <h3 class="card__title">Benefit Three</h3>
+        <p class="card__text">Describe the third key benefit of this partnership. Keep text to 2-3 sentences.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       STATS — Key metrics
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="stats">
+    <div class="section__label">Impact</div>
+    <h2 class="section__title">Partnership Results</h2>
+
+    <div class="stats-grid">
+      <!-- CUSTOMIZE: Stat values and labels -->
+      <div class="stat">
+        <div class="stat__value">10K+</div>
+        <div class="stat__label">Samples Distributed</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">500K</div>
+        <div class="stat__label">Impressions</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">85%</div>
+        <div class="stat__label">Positive Feedback</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">3x</div>
+        <div class="stat__label">ROI Increase</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       CTA — Call to action
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="cta-section" id="cta">
+    <!-- CUSTOMIZE: CTA headline -->
+    <h2 class="section__title">Ready to Partner with Recess?</h2>
+
+    <!-- CUSTOMIZE: CTA button text and link -->
+    <a href="#" class="btn-primary">Start the Conversation</a>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <!-- CUSTOMIZE: Copyright (include both brand names) -->
+    <p class="footer__text">&copy; 2026 Recess x Partner Name. All rights reserved.</p>
+    <ul class="footer__links">
+      <li><a class="footer__link" href="#">Privacy Policy</a></li>
+      <li><a class="footer__link" href="#">Terms of Service</a></li>
+      <li><a class="footer__link" href="#">Contact</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photography - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Photo Section ───────────────────────────────────────────────── */
+    .photo-section {
+      margin-bottom: 56px;
+    }
+
+    .photo-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .photo-section > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Do / Don't Cards ────────────────────────────────────────────── */
+    .guidelines-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .guideline-card {
+      border-radius: 14px;
+      padding: 28px;
+      border: 1px solid;
+    }
+
+    .guideline-card.do {
+      background: rgba(52, 211, 153, 0.04);
+      border-color: rgba(52, 211, 153, 0.20);
+    }
+
+    .guideline-card.dont {
+      background: rgba(239, 68, 68, 0.04);
+      border-color: rgba(239, 68, 68, 0.20);
+    }
+
+    .guideline-card .card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .guideline-card .card-header .icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .guideline-card.do .icon {
+      background: rgba(52, 211, 153, 0.12);
+      color: #059669;
+    }
+
+    .guideline-card.dont .icon {
+      background: rgba(239, 68, 68, 0.12);
+      color: #dc2626;
+    }
+
+    .guideline-card .card-header h3 {
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    .guideline-card.do .card-header h3 {
+      color: #059669;
+    }
+
+    .guideline-card.dont .card-header h3 {
+      color: #dc2626;
+    }
+
+    .guideline-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .guideline-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 8px 0;
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-black);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .guideline-list li:last-child {
+      border-bottom: none;
+    }
+
+    .guideline-list li .check {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      margin-top: 1px;
+    }
+
+    .guideline-card.do .check {
+      background: rgba(52, 211, 153, 0.15);
+      color: #059669;
+    }
+
+    .guideline-card.dont .check {
+      background: rgba(239, 68, 68, 0.15);
+      color: #dc2626;
+    }
+
+    /* ── Overlay Demo ────────────────────────────────────────────────── */
+    .overlay-demo {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .overlay-step {
+      text-align: center;
+    }
+
+    .overlay-box {
+      height: 160px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 10px;
+    }
+
+    .overlay-box.step-1 {
+      background: linear-gradient(135deg, #f8c291, #e55d87, #5fc3e4);
+    }
+
+    .overlay-box.step-2 {
+      background: linear-gradient(135deg, #f8c291, #e55d87, #5fc3e4);
+    }
+
+    .overlay-box.step-2::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 185, 214, 0.20);
+    }
+
+    .overlay-box.step-3 {
+      background: linear-gradient(135deg, #f8c291, #e55d87, #5fc3e4);
+    }
+
+    .overlay-box.step-3::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(95, 110, 129, 0.50);
+    }
+
+    .overlay-box.step-4 {
+      background: linear-gradient(135deg, #f8c291, #e55d87, #5fc3e4);
+    }
+
+    .overlay-box.step-4::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 185, 214, 0.20);
+      z-index: 1;
+    }
+
+    .overlay-box.step-4::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(95, 110, 129, 0.50);
+      z-index: 2;
+    }
+
+    .overlay-box span {
+      position: relative;
+      z-index: 3;
+    }
+
+    .overlay-step .step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-black);
+      margin-bottom: 2px;
+    }
+
+    .overlay-step .step-desc {
+      font-size: 11px;
+      color: var(--text-body);
+    }
+
+    /* ── Arrow between steps ─────────────────────────────────────────── */
+    .process-flow {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-black);
+    }
+
+    .process-step .step-num {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--color-aqua);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .process-arrow {
+      font-size: 16px;
+      color: var(--color-grey-200);
+    }
+
+    /* ── Logo on Images ──────────────────────────────────────────────── */
+    .logo-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .logo-demo-box {
+      height: 180px;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .logo-demo-box.with-overlay {
+      background: linear-gradient(135deg, #f8c291, #e55d87, #5fc3e4);
+    }
+
+    .logo-demo-box.with-overlay::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(20, 185, 214, 0.20);
+      z-index: 1;
+    }
+
+    .logo-demo-box.with-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(95, 110, 129, 0.50);
+      z-index: 2;
+    }
+
+    .logo-demo-box .logo-text {
+      position: relative;
+      z-index: 3;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: #ffffff;
+    }
+
+    .logo-demo-box .logo-caption {
+      position: relative;
+      z-index: 3;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: 4px;
+    }
+
+    .logo-demo-box.no-overlay {
+      background: linear-gradient(135deg, #ffecd2, #fcb69f);
+    }
+
+    .logo-demo-box.no-overlay .logo-text {
+      color: #ffffff;
+      opacity: 0.5;
+    }
+
+    .logo-demo-box.no-overlay .logo-caption {
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 12px;
+      margin-top: 4px;
+    }
+
+    .demo-label-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .demo-label-row .label {
+      text-align: center;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .demo-label-row .label.good {
+      color: #059669;
+    }
+
+    .demo-label-row .label.bad {
+      color: #dc2626;
+    }
+
+    /* ── Code Block ──────────────────────────────────────────────────── */
+    .code-block {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 8px;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+    }
+
+    .code-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 8px;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .guidelines-grid {
+        grid-template-columns: 1fr;
+      }
+      .overlay-demo {
+        grid-template-columns: 1fr 1fr;
+      }
+      .logo-demo {
+        grid-template-columns: 1fr;
+      }
+      .demo-label-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html" class="active">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <h1>Photography Guidelines</h1>
+      <p>Image selection, overlay treatments, and art direction rules for maintaining brand consistency across all visual content.</p>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━ DO'S AND DON'TS ━━━━━━━━━━━━━━━━ -->
+    <section class="photo-section">
+      <h2>Image Selection Guidelines</h2>
+      <p>Follow these rules when selecting photography for Recess marketing materials and landing pages.</p>
+
+      <div class="guidelines-grid">
+        <div class="guideline-card do">
+          <div class="card-header">
+            <div class="icon">&#10003;</div>
+            <h3>Do</h3>
+          </div>
+          <ul class="guideline-list">
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Real people in real places &mdash; authentic, unposed moments</span>
+            </li>
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Highest professional standards &mdash; sharp focus, proper exposure</span>
+            </li>
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Overall lightness in tone &mdash; bright, airy, optimistic feel</span>
+            </li>
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Consistent with brand personality &mdash; calm, balanced, joyful</span>
+            </li>
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Lifestyle, events, and activations imagery</span>
+            </li>
+            <li>
+              <span class="check">&#10003;</span>
+              <span>Happy, fun, excited, and active people</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="guideline-card dont">
+          <div class="card-header">
+            <div class="icon">&#10005;</div>
+            <h3>Don't</h3>
+          </div>
+          <ul class="guideline-list">
+            <li>
+              <span class="check">&#10005;</span>
+              <span>Cluttered compositions &mdash; too many elements competing for attention</span>
+            </li>
+            <li>
+              <span class="check">&#10005;</span>
+              <span>Irrelevant to marketing message &mdash; off-brand or confusing imagery</span>
+            </li>
+            <li>
+              <span class="check">&#10005;</span>
+              <span>Low quality or stock-looking &mdash; generic, staged, or low-resolution</span>
+            </li>
+            <li>
+              <span class="check">&#10005;</span>
+              <span>Heavy or dark tonality without overlay treatment</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ OVERLAY TECHNIQUE ━━━━━━━━━━━━━━━━ -->
+    <section class="photo-section">
+      <h2>Overlay Technique</h2>
+      <p>The brand overlay technique uses two layers on top of photography to create a consistent, on-brand look.</p>
+
+      <div class="process-flow">
+        <div class="process-step">
+          <span class="step-num">1</span>
+          Original Photo
+        </div>
+        <span class="process-arrow">&rarr;</span>
+        <div class="process-step">
+          <span class="step-num">2</span>
+          + Aqua at 20%
+        </div>
+        <span class="process-arrow">&rarr;</span>
+        <div class="process-step">
+          <span class="step-num">3</span>
+          + Grey at 50%
+        </div>
+        <span class="process-arrow">&rarr;</span>
+        <div class="process-step">
+          <span class="step-num">4</span>
+          Final Result
+        </div>
+      </div>
+
+      <div class="overlay-demo">
+        <div class="overlay-step">
+          <div class="overlay-box step-1">
+            <span>Layer 1: Photo</span>
+          </div>
+          <div class="step-label">Original Image</div>
+          <div class="step-desc">Unmodified source photo</div>
+        </div>
+        <div class="overlay-step">
+          <div class="overlay-box step-2">
+            <span style="position: relative; z-index: 1;">Layer 2: Aqua</span>
+          </div>
+          <div class="step-label">#14B9D6 at 20%</div>
+          <div class="step-desc">Brand aqua tint overlay</div>
+        </div>
+        <div class="overlay-step">
+          <div class="overlay-box step-3">
+            <span style="position: relative; z-index: 1;">Layer 3: Grey</span>
+          </div>
+          <div class="step-label">#5F6E81 at 50%</div>
+          <div class="step-desc">Grey tone for depth</div>
+        </div>
+        <div class="overlay-step">
+          <div class="overlay-box step-4">
+            <span>Final Combined</span>
+          </div>
+          <div class="step-label">All Layers</div>
+          <div class="step-desc">Brand-ready image</div>
+        </div>
+      </div>
+
+      <div class="code-label">CSS Overlay Implementation</div>
+      <div class="code-block">
+        <pre><code>/* Image with brand overlay treatment */
+.brand-image {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Layer 2: Aqua tint */
+.brand-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-aqua);   /* rgba(20, 185, 214, 0.20) */
+  z-index: 1;
+}
+
+/* Layer 3: Grey depth */
+.brand-image::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--overlay-grey);   /* rgba(0, 0, 0, 0.50) */
+  z-index: 2;
+}
+
+/* Content on top of overlays */
+.brand-image .content {
+  position: relative;
+  z-index: 3;
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ LOGO ON IMAGES ━━━━━━━━━━━━━━━━ -->
+    <section class="photo-section">
+      <h2>Logo on Images</h2>
+      <p>Always use the white version of the Recess logo when placing it over images. Apply the overlay treatment first to ensure legibility.</p>
+
+      <div class="logo-demo">
+        <div class="logo-demo-box with-overlay">
+          <div class="logo-text"><img src="assets/logo-full-white.png" alt="Recess" style="height: 40px;"></div>
+          <div class="logo-caption">White logo + overlay = legible</div>
+        </div>
+        <div class="logo-demo-box no-overlay">
+          <div class="logo-text"><img src="assets/logo-full-white.png" alt="Recess" style="height: 40px;"></div>
+          <div class="logo-caption">Without overlay = poor contrast</div>
+        </div>
+      </div>
+
+      <div class="demo-label-row">
+        <div class="label good">Correct: With overlay treatment</div>
+        <div class="label bad">Incorrect: Without overlay treatment</div>
+      </div>
+
+      <div class="code-label">Guidelines</div>
+      <div class="code-block">
+        <pre><code>/* Logo placement rules:
+ *
+ * 1. Always use WHITE version of logo on images
+ * 2. Apply overlay treatment FIRST for legibility
+ * 3. Logo should have minimum 24px padding from edges
+ * 4. Never place logo on busy/cluttered areas
+ * 5. Test contrast: logo must be clearly readable
+ */</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ TOKEN REFERENCE ━━━━━━━━━━━━━━━━ -->
+    <section class="photo-section">
+      <h2>Photography Token Reference</h2>
+      <p>CSS custom properties used for photography treatments.</p>
+
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <thead>
+          <tr>
+            <th style="text-align: left; padding: 10px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-grey-500); background: var(--color-grey-50); border-bottom: 1px solid var(--color-grey-200);">Token</th>
+            <th style="text-align: left; padding: 10px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-grey-500); background: var(--color-grey-50); border-bottom: 1px solid var(--color-grey-200);">Value</th>
+            <th style="text-align: left; padding: 10px 16px; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--color-grey-500); background: var(--color-grey-50); border-bottom: 1px solid var(--color-grey-200);">Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);"><code style="font-family: 'SF Mono', monospace; font-size: 13px; background: rgba(20, 185, 214, 0.06); color: var(--color-sea-green); padding: 2px 8px; border-radius: 4px;">--overlay-aqua</code></td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">rgba(20, 185, 214, 0.20)</td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">Brand aqua tint layer</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);"><code style="font-family: 'SF Mono', monospace; font-size: 13px; background: rgba(20, 185, 214, 0.06); color: var(--color-sea-green); padding: 2px 8px; border-radius: 4px;">--overlay-grey</code></td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">rgba(0, 0, 0, 0.50)</td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">Grey depth layer</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);"><code style="font-family: 'SF Mono', monospace; font-size: 13px; background: rgba(20, 185, 214, 0.06); color: var(--color-sea-green); padding: 2px 8px; border-radius: 4px;">--hover-scale</code></td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">scale(1.04)</td>
+            <td style="padding: 10px 16px; border-bottom: 1px solid var(--color-grey-200);">Image zoom on hover</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Photography Guidelines
+    </div>
+  </main>
+</body>
+</html>

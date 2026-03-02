@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CUSTOMIZE: Page title -->
+  <title>Recess - Light Landing Page</title>
+  <link rel="stylesheet" href="../../../brand/tokens.css">
+  <style>
+    /* ==========================================================================
+       RECESS Light Landing Page Template
+       Built on tokens.css — white background, clean nav, orange hover accents.
+       Search for "CUSTOMIZE" to find all editable placeholder content.
+       ========================================================================== */
+
+    /* ── Page ────────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background-color: #ffffff;
+      color: var(--text-black);
+    }
+
+    /* ── Navigation — Clean White ────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px var(--spacing-section-x);
+      background: var(--glass-bg-light);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .nav__brand {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      text-decoration: none;
+    }
+
+    .nav__links {
+      display: flex;
+      gap: var(--spacing-gap);
+      list-style: none;
+    }
+
+    .nav__link {
+      color: var(--text-body);
+      text-decoration: none;
+      font-size: var(--font-size-body-small);
+      font-weight: var(--font-weight-medium);
+      transition: color var(--transition-fast);
+    }
+
+    .nav__link:hover {
+      color: var(--text-black);
+    }
+
+    /* ── Buttons — Light overrides ───────────────────────────────────── */
+    .btn-primary {
+      color: #ffffff;
+      background: var(--color-orange);
+      box-shadow: 0 0 20px rgba(255, 137, 0, 0.20);
+    }
+
+    .btn-primary:hover {
+      background: var(--color-burnt-orange);
+      box-shadow: 0 0 28px rgba(255, 137, 0, 0.35);
+    }
+
+    .btn-ghost {
+      color: var(--text-black);
+      border-color: var(--color-grey-200);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--color-grey-500);
+      background: var(--color-grey-50);
+    }
+
+    /* ── Hero ────────────────────────────────────────────────────────── */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 80vh;
+      padding: 0 var(--spacing-section-x);
+      text-align: center;
+    }
+
+    .hero__badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: var(--font-size-caption);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      border-radius: var(--radius-badge);
+      background: rgba(255, 137, 0, 0.08);
+      color: var(--color-orange);
+      border: 1px solid rgba(255, 137, 0, 0.18);
+      margin-bottom: var(--spacing-gap);
+    }
+
+    .hero__title {
+      font-size: var(--font-size-hero);
+      font-weight: var(--font-weight-extrabold);
+      line-height: var(--line-height-tight);
+      letter-spacing: var(--letter-spacing-tight);
+      color: var(--text-black);
+      max-width: var(--max-width-hero-text);
+    }
+
+    .hero__subtitle {
+      font-size: var(--font-size-hero-sub);
+      color: var(--text-body);
+      line-height: var(--line-height-relaxed);
+      max-width: 560px;
+      margin-top: var(--spacing-gap);
+    }
+
+    .hero__actions {
+      display: flex;
+      gap: var(--spacing-gap-md);
+      margin-top: 36px;
+    }
+
+    /* ── Sections ────────────────────────────────────────────────────── */
+    .section {
+      padding: var(--spacing-section-y) var(--spacing-section-x);
+      max-width: var(--max-width-content);
+      margin: 0 auto;
+    }
+
+    .section__label {
+      font-size: var(--font-size-section-label);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-widest);
+      text-transform: uppercase;
+      color: var(--color-orange);
+      margin-bottom: var(--spacing-gap-sm);
+    }
+
+    .section__title {
+      font-size: var(--font-size-section-title);
+      font-weight: var(--font-weight-bold);
+      line-height: var(--line-height-snug);
+      color: var(--text-black);
+      margin-bottom: var(--spacing-gap);
+    }
+
+    .section__description {
+      font-size: var(--font-size-body);
+      color: var(--text-body);
+      line-height: var(--line-height-relaxed);
+      max-width: 640px;
+      margin-bottom: 36px;
+    }
+
+    /* ── Card Grid ───────────────────────────────────────────────────── */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--spacing-gap);
+    }
+
+    .card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: var(--radius-card);
+      padding: var(--spacing-card-padding);
+      box-shadow: var(--shadow-card);
+      transition: border-color var(--transition-base),
+                  transform var(--transition-base),
+                  box-shadow var(--transition-base);
+    }
+
+    .card:hover {
+      border-color: var(--color-grey-500);
+      transform: var(--hover-lift);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .card__icon {
+      font-size: 28px;
+      margin-bottom: var(--spacing-gap-md);
+      color: var(--color-orange);
+    }
+
+    .card__title {
+      font-size: var(--font-size-body);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-black);
+      margin-bottom: var(--spacing-gap-sm);
+    }
+
+    .card__text {
+      font-size: var(--font-size-body-small);
+      color: var(--text-body);
+      line-height: var(--line-height-relaxed);
+    }
+
+    /* ── Stats ───────────────────────────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--spacing-gap);
+    }
+
+    .stat {
+      text-align: center;
+      padding: 24px;
+    }
+
+    .stat__value {
+      font-size: var(--font-size-section-title);
+      font-weight: var(--font-weight-extrabold);
+      color: var(--color-orange);
+      line-height: var(--line-height-tight);
+    }
+
+    .stat__label {
+      font-size: var(--font-size-body-small);
+      color: var(--text-body);
+      margin-top: 4px;
+    }
+
+    /* ── CTA Section ─────────────────────────────────────────────────── */
+    .cta-section {
+      text-align: center;
+      padding: var(--spacing-section-y) var(--spacing-section-x);
+      max-width: var(--max-width-content);
+      margin: 0 auto;
+    }
+
+    .cta-section .section__title {
+      max-width: 600px;
+      margin: 0 auto var(--spacing-gap);
+    }
+
+    /* ── Footer ──────────────────────────────────────────────────────── */
+    .footer {
+      padding: 48px var(--spacing-section-x);
+      border-top: 1px solid var(--color-grey-200);
+      text-align: center;
+      background: var(--color-grey-50);
+    }
+
+    .footer__text {
+      font-size: var(--font-size-caption);
+      color: var(--text-body);
+    }
+
+    .footer__links {
+      display: flex;
+      justify-content: center;
+      gap: var(--spacing-gap);
+      margin-top: var(--spacing-gap-md);
+      list-style: none;
+    }
+
+    .footer__link {
+      font-size: var(--font-size-caption);
+      color: var(--text-body);
+      text-decoration: none;
+      transition: color var(--transition-fast);
+    }
+
+    .footer__link:hover {
+      color: var(--text-black);
+    }
+
+    /* ── Responsive ──────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .nav {
+        padding: 12px var(--spacing-section-x-mobile);
+      }
+
+      .hero {
+        min-height: 65vh;
+        padding: 0 var(--spacing-section-x-mobile);
+      }
+
+      .hero__actions {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .section {
+        padding: var(--spacing-section-y-mobile) var(--spacing-section-x-mobile);
+      }
+
+      .card-grid,
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-section {
+        padding: var(--spacing-section-y-mobile) var(--spacing-section-x-mobile);
+      }
+
+      .footer {
+        padding: 36px var(--spacing-section-x-mobile);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       NAVIGATION — Clean white nav
+       ══════════════════════════════════════════════════════════════════ -->
+  <nav class="nav">
+    <!-- CUSTOMIZE: Partner name / logo -->
+    <a href="#" class="nav__brand"><img src="../../../brand/logo-full-aqua.png" alt="Recess" style="height: 28px;"></a>
+    <ul class="nav__links">
+      <!-- CUSTOMIZE: Navigation links -->
+      <li><a class="nav__link" href="#features">Features</a></li>
+      <li><a class="nav__link" href="#stats">Results</a></li>
+      <li><a class="nav__link" href="#cta">Get Started</a></li>
+    </ul>
+  </nav>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       HERO — 80vh centered content
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="hero">
+    <!-- CUSTOMIZE: Badge text -->
+    <div class="hero__badge">Now Available</div>
+
+    <!-- CUSTOMIZE: Headline -->
+    <h1 class="hero__title">Your Headline Goes Here in Bold Type</h1>
+
+    <!-- CUSTOMIZE: Subheadline -->
+    <p class="hero__subtitle">A brief description that supports the headline. Keep it to one or two sentences that clearly communicate the value proposition.</p>
+
+    <div class="hero__actions">
+      <!-- CUSTOMIZE: Button text and links -->
+      <a href="#cta" class="btn-primary">Get Started</a>
+      <a href="#features" class="btn-ghost">Learn More</a>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FEATURES — Card grid section
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="features">
+    <!-- CUSTOMIZE: Section label -->
+    <div class="section__label">Features</div>
+
+    <!-- CUSTOMIZE: Section title -->
+    <h2 class="section__title">Why Choose Recess</h2>
+
+    <!-- CUSTOMIZE: Section description -->
+    <p class="section__description">Brief overview text that introduces the features below. Keep it concise and benefit-focused.</p>
+
+    <div class="card-grid">
+      <!-- CUSTOMIZE: Card content (duplicate/remove cards as needed) -->
+      <div class="card">
+        <div class="card__icon">&#9733;</div>
+        <h3 class="card__title">Feature One</h3>
+        <p class="card__text">Describe this feature and its benefits. Keep text to 2-3 sentences for readability.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon">&#9830;</div>
+        <h3 class="card__title">Feature Two</h3>
+        <p class="card__text">Describe this feature and its benefits. Keep text to 2-3 sentences for readability.</p>
+      </div>
+
+      <div class="card">
+        <div class="card__icon">&#10026;</div>
+        <h3 class="card__title">Feature Three</h3>
+        <p class="card__text">Describe this feature and its benefits. Keep text to 2-3 sentences for readability.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       STATS — Key metrics
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="section" id="stats">
+    <div class="section__label">By the Numbers</div>
+    <h2 class="section__title">Proven Results</h2>
+
+    <div class="stats-grid">
+      <!-- CUSTOMIZE: Stat values and labels -->
+      <div class="stat">
+        <div class="stat__value">150+</div>
+        <div class="stat__label">Brand Partners</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">8M</div>
+        <div class="stat__label">Cans Distributed</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">50</div>
+        <div class="stat__label">Markets Served</div>
+      </div>
+      <div class="stat">
+        <div class="stat__value">98%</div>
+        <div class="stat__label">Satisfaction Rate</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       CTA — Call to action
+       ══════════════════════════════════════════════════════════════════ -->
+  <section class="cta-section" id="cta">
+    <!-- CUSTOMIZE: CTA headline -->
+    <h2 class="section__title">Ready to Get Started?</h2>
+
+    <!-- CUSTOMIZE: CTA button -->
+    <a href="#" class="btn-primary">Contact Us Today</a>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════════
+       FOOTER
+       ══════════════════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <!-- CUSTOMIZE: Copyright and links -->
+    <p class="footer__text">&copy; 2026 Recess. All rights reserved.</p>
+    <ul class="footer__links">
+      <li><a class="footer__link" href="#">Privacy Policy</a></li>
+      <li><a class="footer__link" href="#">Terms of Service</a></li>
+      <li><a class="footer__link" href="#">Contact</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>

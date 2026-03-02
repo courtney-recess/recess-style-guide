@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typography - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 56px;
+    }
+
+    .page-header .label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 12px;
+    }
+
+    .page-header h1 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Section ──────────────────────────────────────────────────────── */
+    .section {
+      margin-bottom: 56px;
+    }
+
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .section-desc {
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Font Import Box ──────────────────────────────────────────────── */
+    .import-box {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-500);
+      word-break: break-all;
+    }
+
+    .import-box .highlight {
+      color: var(--color-aqua);
+    }
+
+    /* ── Weight Samples ──────────────────────────────────────────────── */
+    .weight-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .weight-sample {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: 12px;
+      padding: 20px 24px;
+      transition: all 0.2s ease;
+    }
+
+    .weight-sample:hover {
+      border-color: rgba(20, 185, 214, 0.25);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .weight-sample .preview {
+      font-size: 16px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+
+    .weight-sample .meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .weight-sample .weight-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-body);
+    }
+
+    .weight-sample .weight-value {
+      font-size: 11px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      color: var(--color-aqua);
+      background: rgba(20, 185, 214, 0.06);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── Type Scale ──────────────────────────────────────────────────── */
+    .type-scale-item {
+      border: 1px solid var(--color-grey-200);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .type-scale-item:hover {
+      border-color: rgba(20, 185, 214, 0.2);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+    }
+
+    .type-scale-preview {
+      padding: 28px 32px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .type-scale-meta {
+      padding: 16px 32px;
+      background: var(--color-grey-50);
+      border-top: 1px solid var(--color-grey-200);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .type-scale-meta .meta-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-black);
+      min-width: 100px;
+    }
+
+    .meta-tag {
+      font-size: 11px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      padding: 3px 10px;
+      border-radius: 5px;
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-aqua);
+    }
+
+    .meta-tag.grey {
+      background: rgba(95, 110, 129, 0.08);
+      color: var(--color-grey-500);
+    }
+
+    /* ── Letter Spacing Comparison ────────────────────────────────────── */
+    .spacing-compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .spacing-box {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 12px;
+      padding: 24px;
+    }
+
+    .spacing-box .box-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 12px;
+    }
+
+    .spacing-box .box-text {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-black);
+    }
+
+    .spacing-box .box-meta {
+      font-size: 12px;
+      color: var(--text-body);
+      margin-top: 8px;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    }
+
+    /* ── Rules Box ───────────────────────────────────────────────────── */
+    .rules-box {
+      background: rgba(20, 185, 214, 0.04);
+      border: 1px solid rgba(20, 185, 214, 0.15);
+      border-radius: 14px;
+      padding: 28px 32px;
+    }
+
+    .rules-box h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 16px;
+      letter-spacing: -0.1px;
+    }
+
+    .rules-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .rules-box li {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      padding: 8px 0 8px 24px;
+      position: relative;
+      border-bottom: 1px solid rgba(20, 185, 214, 0.08);
+    }
+
+    .rules-box li:last-child {
+      border-bottom: none;
+    }
+
+    .rules-box li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 16px;
+      width: 10px;
+      height: 10px;
+      border-radius: 3px;
+      background: var(--color-aqua);
+      opacity: 0.3;
+    }
+
+    .rules-box li strong {
+      color: var(--text-black);
+    }
+
+    .rules-box li code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 12px;
+      background: rgba(20, 185, 214, 0.08);
+      padding: 2px 6px;
+      border-radius: 3px;
+      color: var(--color-sea-green);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .weight-grid {
+        grid-template-columns: 1fr;
+      }
+      .spacing-compare {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html" class="active">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <div class="label">Visual Identity</div>
+      <h1>Typography</h1>
+      <p>The Recess type system uses Inter as its sole typeface, with a fluid scale that adapts from mobile to desktop. Every size is rendered live below.</p>
+    </div>
+
+    <!-- Font Family -->
+    <section class="section">
+      <h2 class="section-title">Font Family</h2>
+      <p class="section-desc">Inter is loaded from Google Fonts with weights 400 through 900. Add this import to any page that uses the design system.</p>
+      <div class="import-box">
+        <span class="highlight">@import</span> url('<span class="highlight">https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap</span>');
+      </div>
+      <div class="import-box">
+        font-family: <span class="highlight">'Inter'</span>, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      </div>
+    </section>
+
+    <!-- Font Weights -->
+    <section class="section">
+      <h2 class="section-title">Font Weights</h2>
+      <p class="section-desc">Six weights available. Each rendered at 16px so you can see the visual difference.</p>
+      <div class="weight-grid">
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 400;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Regular</span>
+            <span class="weight-value">400</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 500;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Medium</span>
+            <span class="weight-value">500</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 600;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Semibold</span>
+            <span class="weight-value">600</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 700;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Bold</span>
+            <span class="weight-value">700</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 800;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Extrabold</span>
+            <span class="weight-value">800</span>
+          </div>
+        </div>
+        <div class="weight-sample">
+          <div class="preview" style="font-weight: 900;">The quick brown fox jumps over the lazy dog</div>
+          <div class="meta">
+            <span class="weight-name">Black</span>
+            <span class="weight-value">900</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Type Scale -->
+    <section class="section">
+      <h2 class="section-title">Type Scale</h2>
+      <p class="section-desc">Each level of the scale rendered at its actual size. Resize your browser to see the fluid clamp values respond.</p>
+
+      <!-- Hero -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: clamp(42px, 6vw, 76px); font-weight: 900; letter-spacing: -2px; line-height: 1.1; color: var(--text-black);">Hero Headline</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Hero</span>
+          <span class="meta-tag">clamp(42px, 6vw, 76px)</span>
+          <span class="meta-tag grey">weight 900</span>
+          <span class="meta-tag grey">tracking -2px</span>
+          <span class="meta-tag grey">line-height 1.1</span>
+        </div>
+      </div>
+
+      <!-- Hero Sub -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: clamp(20px, 2.5vw, 28px); font-weight: 700; letter-spacing: -0.5px; line-height: 1.3; color: var(--text-black);">Hero subheadline text</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Hero Sub</span>
+          <span class="meta-tag">clamp(20px, 2.5vw, 28px)</span>
+          <span class="meta-tag grey">weight 700</span>
+          <span class="meta-tag grey">tracking -0.5px</span>
+          <span class="meta-tag grey">line-height 1.3</span>
+        </div>
+      </div>
+
+      <!-- Section Title -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: clamp(28px, 3.5vw, 44px); font-weight: 800; letter-spacing: -1px; line-height: 1.3; color: var(--text-black);">Section Title</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Section Title</span>
+          <span class="meta-tag">clamp(28px, 3.5vw, 44px)</span>
+          <span class="meta-tag grey">weight 800</span>
+          <span class="meta-tag grey">tracking -1px</span>
+          <span class="meta-tag grey">line-height 1.3</span>
+        </div>
+      </div>
+
+      <!-- Section Label -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; line-height: 1.5; color: var(--color-aqua);">SECTION LABEL</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Section Label</span>
+          <span class="meta-tag">11px</span>
+          <span class="meta-tag grey">weight 700</span>
+          <span class="meta-tag grey">tracking 2px</span>
+          <span class="meta-tag grey">uppercase</span>
+          <span class="meta-tag" style="background: rgba(20, 185, 214, 0.08);">color: aqua</span>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: 16px; font-weight: 400; line-height: 1.7; color: var(--text-body); max-width: 600px;">Recess makes sponsorship easy, efficient, and stress-free. Our platform connects brands with live events through a programmatic marketplace, bringing the same transparency and efficiency that transformed digital advertising to the $62 billion live events sponsorship market.</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Body</span>
+          <span class="meta-tag">16px</span>
+          <span class="meta-tag grey">weight 400</span>
+          <span class="meta-tag grey">line-height 1.7</span>
+        </div>
+      </div>
+
+      <!-- Body Small -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: 14px; font-weight: 400; line-height: 1.6; color: var(--text-body);">Supporting text that appears below headlines, inside cards, or as secondary descriptions throughout the interface.</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Body Small</span>
+          <span class="meta-tag">14px</span>
+          <span class="meta-tag grey">weight 400</span>
+          <span class="meta-tag grey">line-height 1.6</span>
+        </div>
+      </div>
+
+      <!-- Caption -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: 12px; font-weight: 400; line-height: 1.5; color: var(--text-body);">Caption text for metadata, timestamps, and fine print. Keep it legible.</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Caption</span>
+          <span class="meta-tag">12px</span>
+          <span class="meta-tag grey">weight 400</span>
+          <span class="meta-tag grey">line-height 1.5</span>
+        </div>
+      </div>
+
+      <!-- Micro -->
+      <div class="type-scale-item">
+        <div class="type-scale-preview">
+          <div style="font-size: 9px; font-weight: 700; line-height: 1.4; color: var(--text-body); text-transform: uppercase; letter-spacing: 0.5px;">MICRO TEXT FOR BADGES AND LABELS</div>
+        </div>
+        <div class="type-scale-meta">
+          <span class="meta-label">Micro</span>
+          <span class="meta-tag">9px</span>
+          <span class="meta-tag grey">weight 700</span>
+          <span class="meta-tag grey">uppercase</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Letter Spacing Comparison -->
+    <section class="section">
+      <h2 class="section-title">Letter Spacing Comparison</h2>
+      <p class="section-desc">Tight tracking creates density for headlines. Wide tracking adds breathing room for labels.</p>
+      <div class="spacing-compare">
+        <div class="spacing-box">
+          <div class="box-label">Tight Tracking</div>
+          <div class="box-text" style="letter-spacing: -2px;">Sponsorship Made Easy</div>
+          <div class="box-meta">letter-spacing: -2px</div>
+        </div>
+        <div class="spacing-box">
+          <div class="box-label">Default (No Tracking)</div>
+          <div class="box-text" style="letter-spacing: 0;">Sponsorship Made Easy</div>
+          <div class="box-meta">letter-spacing: 0</div>
+        </div>
+      </div>
+      <div class="spacing-compare" style="margin-top: 16px;">
+        <div class="spacing-box">
+          <div class="box-label">Wide Tracking</div>
+          <div class="box-text" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;">Section Label</div>
+          <div class="box-meta">letter-spacing: 2px (0.12em)</div>
+        </div>
+        <div class="spacing-box">
+          <div class="box-label">No Tracking</div>
+          <div class="box-text" style="font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0;">Section Label</div>
+          <div class="box-meta">letter-spacing: 0</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Usage Rules -->
+    <section class="section">
+      <h2 class="section-title">Usage Rules</h2>
+      <div class="rules-box">
+        <h4>Typography Do's and Don'ts</h4>
+        <ul>
+          <li><strong>Hero headlines</strong> always use weight <code>900</code> (Black). No exceptions. This is the signature Recess look.</li>
+          <li><strong>Body copy</strong> always uses weight <code>400</code> (Regular). Never bold entire paragraphs.</li>
+          <li>Use <strong>Semibold</strong> (<code>600</code>) for inline emphasis within body text instead of bold.</li>
+          <li>Use <strong>italics sparingly</strong> and only for proper names, titles, or foreign phrases. Never for emphasis.</li>
+          <li>Section labels must be <strong>uppercase</strong> with <strong>wide tracking</strong> (<code>0.12em</code>) and <strong>aqua color</strong>.</li>
+          <li>Never go below <code>9px</code> for any text. Accessibility requires minimum readable sizes.</li>
+          <li>All headline tracking is <strong>negative</strong> (tight). All label tracking is <strong>positive</strong> (wide). Never reverse these.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Typography
+    </div>
+  </main>
+</body>
+</html>

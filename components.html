@@ -1,0 +1,1016 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Components - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Component Section ───────────────────────────────────────────── */
+    .comp-section {
+      margin-bottom: 56px;
+    }
+
+    .comp-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .comp-section > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Demo Row (Dark + Light side by side) ────────────────────────── */
+    .demo-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .demo-box {
+      border-radius: 12px;
+      padding: 32px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .demo-box.dark {
+      background: var(--color-navy);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-box.light {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .demo-label {
+      width: 100%;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 4px;
+    }
+
+    .demo-label.on-dark {
+      color: var(--text-white-55);
+    }
+
+    .demo-label.on-light {
+      color: var(--text-body);
+    }
+
+    /* ── Code Block ──────────────────────────────────────────────────── */
+    .code-block {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 8px;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+    }
+
+    .code-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 8px;
+    }
+
+    /* ── Inline component overrides for demos ────────────────────────── */
+
+    /* Buttons on light */
+    .demo-box.light .btn-primary {
+      color: #ffffff;
+      background: var(--color-aqua);
+      box-shadow: var(--shadow-cta-glow);
+    }
+    .demo-box.light .btn-primary:hover {
+      background: var(--color-sea-green);
+      box-shadow: var(--shadow-cta-glow-hover);
+    }
+
+    .demo-box.light .btn-ghost {
+      color: var(--text-black);
+      border-color: var(--color-grey-200);
+    }
+    .demo-box.light .btn-ghost:hover {
+      border-color: var(--color-grey-500);
+      background: var(--color-grey-50);
+    }
+
+    /* Card demos */
+    .demo-card {
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .demo-card.dark-card {
+      background: var(--color-navy-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-card);
+      padding: var(--spacing-card-padding);
+      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .demo-card.dark-card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: var(--hover-lift);
+      box-shadow: var(--shadow-card);
+    }
+
+    .demo-card.dark-card .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-white);
+      margin-bottom: 8px;
+    }
+
+    .demo-card.dark-card .card-text {
+      font-size: 14px;
+      color: var(--text-white-55);
+      line-height: 1.6;
+    }
+
+    .demo-card.light-card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: var(--radius-card);
+      padding: var(--spacing-card-padding);
+      box-shadow: var(--shadow-card);
+      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+    }
+
+    .demo-card.light-card:hover {
+      border-color: var(--color-grey-500);
+      transform: var(--hover-lift);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+    }
+
+    .demo-card.light-card .card-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-black);
+      margin-bottom: 8px;
+    }
+
+    .demo-card.light-card .card-text {
+      font-size: 14px;
+      color: var(--text-body);
+      line-height: 1.6;
+    }
+
+    /* Badge demos */
+    .demo-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .demo-badge.pill {
+      border-radius: 100px;
+    }
+
+    .demo-badge.square {
+      border-radius: 8px;
+    }
+
+    .demo-badge.aqua {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      border: 1px solid rgba(20, 185, 214, 0.20);
+    }
+
+    .demo-badge.orange {
+      background: rgba(255, 137, 0, 0.08);
+      color: var(--color-orange);
+      border: 1px solid rgba(255, 137, 0, 0.18);
+    }
+
+    .demo-badge.green {
+      background: rgba(52, 211, 153, 0.10);
+      color: var(--color-accent-green);
+      border: 1px solid rgba(52, 211, 153, 0.20);
+    }
+
+    /* Nav demos */
+    .demo-nav {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 24px;
+      border-radius: 10px;
+    }
+
+    .demo-nav.glass-dark {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-nav.clean-light {
+      background: var(--glass-bg-light);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .demo-nav .nav-brand {
+      font-size: 16px;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+    }
+
+    .demo-nav.glass-dark .nav-brand {
+      color: var(--text-white);
+    }
+
+    .demo-nav.clean-light .nav-brand {
+      color: var(--text-black);
+    }
+
+    .demo-nav .nav-links {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+
+    .demo-nav .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+
+    .demo-nav.glass-dark .nav-links a {
+      color: var(--text-white-60);
+    }
+
+    .demo-nav.glass-dark .nav-links a:hover {
+      color: var(--text-white);
+    }
+
+    .demo-nav.clean-light .nav-links a {
+      color: var(--text-body);
+    }
+
+    .demo-nav.clean-light .nav-links a:hover {
+      color: var(--text-black);
+    }
+
+    /* Section label demo */
+    .demo-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+    }
+
+    .demo-section-label.on-light {
+      color: var(--color-orange);
+    }
+
+    /* Stat block demo */
+    .demo-stat {
+      text-align: center;
+    }
+
+    .demo-stat .stat-value {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--color-aqua);
+    }
+
+    .demo-stat .stat-label {
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    .demo-stat.on-dark .stat-label {
+      color: var(--text-white-55);
+    }
+
+    .demo-stat.on-light .stat-value {
+      color: var(--color-orange);
+    }
+
+    .demo-stat.on-light .stat-label {
+      color: var(--text-body);
+    }
+
+    /* Form elements */
+    .demo-input {
+      width: 100%;
+      max-width: 300px;
+      padding: 12px 16px;
+      font-family: var(--font-family);
+      font-size: 15px;
+      border-radius: var(--radius-input);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .demo-input.on-dark {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: var(--text-white);
+    }
+
+    .demo-input.on-dark::placeholder {
+      color: var(--text-white-25);
+    }
+
+    .demo-input.on-dark:focus {
+      border-color: var(--color-aqua);
+      box-shadow: 0 0 0 3px rgba(20, 185, 214, 0.15);
+    }
+
+    .demo-input.on-light {
+      background: #ffffff;
+      border: 1px solid #d6d6d6;
+      color: var(--text-black);
+    }
+
+    .demo-input.on-light::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    .demo-input.on-light:focus {
+      border-color: var(--color-aqua);
+      box-shadow: 0 0 0 3px rgba(20, 185, 214, 0.10);
+    }
+
+    .demo-textarea {
+      width: 100%;
+      max-width: 300px;
+      padding: 12px 16px;
+      font-family: var(--font-family);
+      font-size: 15px;
+      border-radius: var(--radius-input);
+      outline: none;
+      resize: vertical;
+      min-height: 80px;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .demo-textarea.on-dark {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      color: var(--text-white);
+    }
+
+    .demo-textarea.on-dark::placeholder {
+      color: var(--text-white-25);
+    }
+
+    .demo-textarea.on-dark:focus {
+      border-color: var(--color-aqua);
+      box-shadow: 0 0 0 3px rgba(20, 185, 214, 0.15);
+    }
+
+    .demo-textarea.on-light {
+      background: #ffffff;
+      border: 1px solid #d6d6d6;
+      color: var(--text-black);
+    }
+
+    .demo-textarea.on-light::placeholder {
+      color: var(--text-placeholder);
+    }
+
+    .demo-textarea.on-light:focus {
+      border-color: var(--color-aqua);
+      box-shadow: 0 0 0 3px rgba(20, 185, 214, 0.10);
+    }
+
+    /* CTA Section */
+    .demo-cta {
+      width: 100%;
+      text-align: center;
+      padding: 48px 24px;
+      border-radius: 12px;
+    }
+
+    .demo-cta.on-dark {
+      background: var(--color-navy-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-cta.on-light {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .demo-cta h3 {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .demo-cta.on-dark h3 {
+      color: var(--text-white);
+    }
+
+    .demo-cta.on-light h3 {
+      color: var(--text-black);
+    }
+
+    /* Footer demo */
+    .demo-footer {
+      width: 100%;
+      text-align: center;
+      padding: 32px 24px;
+      border-radius: 10px;
+    }
+
+    .demo-footer.on-dark {
+      background: var(--color-navy);
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-footer.on-light {
+      background: var(--color-grey-50);
+      border-top: 1px solid var(--color-grey-200);
+    }
+
+    .demo-footer .footer-text {
+      font-size: 12px;
+    }
+
+    .demo-footer.on-dark .footer-text {
+      color: var(--text-white-25);
+    }
+
+    .demo-footer.on-light .footer-text {
+      color: var(--text-body);
+    }
+
+    .demo-footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      list-style: none;
+      margin-top: 12px;
+    }
+
+    .demo-footer .footer-links a {
+      font-size: 12px;
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+
+    .demo-footer.on-dark .footer-links a {
+      color: var(--text-white-25);
+    }
+
+    .demo-footer.on-dark .footer-links a:hover {
+      color: var(--text-white-60);
+    }
+
+    .demo-footer.on-light .footer-links a {
+      color: var(--text-body);
+    }
+
+    .demo-footer.on-light .footer-links a:hover {
+      color: var(--text-black);
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .demo-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html" class="active">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <h1>Component Library</h1>
+      <p>Live examples of every standard component on both dark and light backgrounds. Each includes copyable HTML markup.</p>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Buttons</h2>
+      <p>Primary buttons use an aqua background with a glow shadow. Ghost buttons are transparent with a subtle border. Both lift on hover.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark">
+          <div class="demo-label on-dark">Dark Background</div>
+          <button class="btn-primary">Primary Button</button>
+          <button class="btn-ghost">Ghost Button</button>
+        </div>
+        <div class="demo-box light">
+          <div class="demo-label on-light">Light Background</div>
+          <button class="btn-primary">Primary Button</button>
+          <button class="btn-ghost">Ghost Button</button>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;button class="btn-primary"&gt;Primary Button&lt;/button&gt;
+&lt;button class="btn-ghost"&gt;Ghost Button&lt;/button&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ CARDS ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Cards</h2>
+      <p>Cards have a subtle border, generous padding, and a hover lift effect with shadow. Hover to see the transition.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark">
+          <div class="demo-label on-dark">Dark Background</div>
+          <div class="demo-card dark-card">
+            <div class="card-title">Card Title</div>
+            <div class="card-text">Supporting text that describes the card content. Hover this card to see the lift effect.</div>
+          </div>
+        </div>
+        <div class="demo-box light">
+          <div class="demo-label on-light">Light Background</div>
+          <div class="demo-card light-card">
+            <div class="card-title">Card Title</div>
+            <div class="card-text">Supporting text that describes the card content. Hover this card to see the lift effect.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;!-- Dark theme card --&gt;
+&lt;div class="card"&gt;
+  &lt;h3 class="card__title"&gt;Card Title&lt;/h3&gt;
+  &lt;p class="card__text"&gt;Supporting text...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- Light theme card --&gt;
+&lt;div class="card"&gt;
+  &lt;h3 class="card__title"&gt;Card Title&lt;/h3&gt;
+  &lt;p class="card__text"&gt;Supporting text...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ BADGES ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Badges</h2>
+      <p>Badges come in pill (100px radius) and square (8px radius) variants. Used for labels, status indicators, and tags.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark">
+          <div class="demo-label on-dark">Dark Background</div>
+          <span class="demo-badge pill aqua">Pill Badge</span>
+          <span class="demo-badge square aqua">Square Badge</span>
+          <span class="demo-badge pill green">Active</span>
+        </div>
+        <div class="demo-box light">
+          <div class="demo-label on-light">Light Background</div>
+          <span class="demo-badge pill orange">Pill Badge</span>
+          <span class="demo-badge square orange">Square Badge</span>
+          <span class="demo-badge pill aqua">Feature</span>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;!-- Pill badge (100px radius) --&gt;
+&lt;span class="badge" style="border-radius: 100px;"&gt;Pill Badge&lt;/span&gt;
+
+&lt;!-- Square badge (8px radius) --&gt;
+&lt;span class="badge" style="border-radius: 8px;"&gt;Square Badge&lt;/span&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ NAVIGATION ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Navigation</h2>
+      <p>Two navigation variants: glassmorphism dark nav with blur and transparency, and a clean white light nav.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark" style="padding: 24px 16px;">
+          <div class="demo-label on-dark">Glassmorphism Dark Nav</div>
+          <div class="demo-nav glass-dark">
+            <div class="nav-brand"><img src="assets/logo-full-white.png" alt="Recess" style="height: 28px;"></div>
+            <ul class="nav-links">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="demo-box light" style="padding: 24px 16px;">
+          <div class="demo-label on-light">Clean White Nav</div>
+          <div class="demo-nav clean-light">
+            <div class="nav-brand"><img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;"></div>
+            <ul class="nav-links">
+              <li><a href="#">About</a></li>
+              <li><a href="#">Features</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;!-- Dark glassmorphism nav --&gt;
+&lt;nav class="nav"&gt;
+  &lt;img class="nav__logo" src="logo-white.svg" alt="Recess"&gt;
+  &lt;ul class="nav__links"&gt;
+    &lt;li&gt;&lt;a class="nav__link" href="#"&gt;About&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="nav__link" href="#"&gt;Features&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="nav__link" href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ SECTION LABEL ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Section Label</h2>
+      <p>Uppercase label text used above section titles. 11px size, 2px letter tracking, colored with the brand accent.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark">
+          <div class="demo-label on-dark">Dark Background</div>
+          <div>
+            <div class="demo-section-label">Our Features</div>
+            <div style="color: var(--text-white); font-size: 28px; font-weight: 700; margin-top: 6px;">What We Offer</div>
+          </div>
+        </div>
+        <div class="demo-box light">
+          <div class="demo-label on-light">Light Background</div>
+          <div>
+            <div class="demo-section-label on-light">Our Features</div>
+            <div style="color: var(--text-black); font-size: 28px; font-weight: 700; margin-top: 6px;">What We Offer</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;div class="section__label"&gt;Our Features&lt;/div&gt;
+&lt;h2 class="section__title"&gt;What We Offer&lt;/h2&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ STAT BLOCK ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Stat Block</h2>
+      <p>Large accent-colored number with a description below. Used for metrics, highlights, and key figures.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark">
+          <div class="demo-label on-dark">Dark Background</div>
+          <div class="demo-stat on-dark">
+            <div class="stat-value">150+</div>
+            <div class="stat-label">Brand Partners</div>
+          </div>
+          <div class="demo-stat on-dark">
+            <div class="stat-value">8M</div>
+            <div class="stat-label">Cans Distributed</div>
+          </div>
+          <div class="demo-stat on-dark">
+            <div class="stat-value">50</div>
+            <div class="stat-label">Markets Served</div>
+          </div>
+        </div>
+        <div class="demo-box light">
+          <div class="demo-label on-light">Light Background</div>
+          <div class="demo-stat on-light">
+            <div class="stat-value">150+</div>
+            <div class="stat-label">Brand Partners</div>
+          </div>
+          <div class="demo-stat on-light">
+            <div class="stat-value">8M</div>
+            <div class="stat-label">Cans Distributed</div>
+          </div>
+          <div class="demo-stat on-light">
+            <div class="stat-value">50</div>
+            <div class="stat-label">Markets Served</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;div class="stat"&gt;
+  &lt;div class="stat__value"&gt;150+&lt;/div&gt;
+  &lt;div class="stat__label"&gt;Brand Partners&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ FORM ELEMENTS ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Form Elements</h2>
+      <p>Input fields and textareas styled with brand tokens. 0.5rem border-radius, #d6d6d6 border on light, and aqua focus ring.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark" style="flex-direction: column; align-items: stretch;">
+          <div class="demo-label on-dark">Dark Background</div>
+          <input class="demo-input on-dark" type="text" placeholder="Enter your name">
+          <input class="demo-input on-dark" type="email" placeholder="Enter your email">
+          <textarea class="demo-textarea on-dark" placeholder="Your message..."></textarea>
+        </div>
+        <div class="demo-box light" style="flex-direction: column; align-items: stretch;">
+          <div class="demo-label on-light">Light Background</div>
+          <input class="demo-input on-light" type="text" placeholder="Enter your name">
+          <input class="demo-input on-light" type="email" placeholder="Enter your email">
+          <textarea class="demo-textarea on-light" placeholder="Your message..."></textarea>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;input type="text" placeholder="Enter your name"
+  style="padding: 12px 16px; font-size: 15px;
+         border-radius: 0.5rem; border: 1px solid #d6d6d6;
+         font-family: 'Inter', sans-serif;"&gt;
+
+&lt;textarea placeholder="Your message..."
+  style="padding: 12px 16px; font-size: 15px;
+         border-radius: 0.5rem; border: 1px solid #d6d6d6;
+         font-family: 'Inter', sans-serif;"&gt;&lt;/textarea&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ CTA SECTION ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>CTA Section</h2>
+      <p>Centered call-to-action block with a title and prominent button. Used at the bottom of content sections.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark" style="padding: 16px;">
+          <div class="demo-label on-dark">Dark Background</div>
+          <div class="demo-cta on-dark">
+            <h3>Ready to Get Started?</h3>
+            <button class="btn-primary">Get Started</button>
+          </div>
+        </div>
+        <div class="demo-box light" style="padding: 16px;">
+          <div class="demo-label on-light">Light Background</div>
+          <div class="demo-cta on-light">
+            <h3>Ready to Get Started?</h3>
+            <button class="btn-primary">Get Started</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;section class="section" style="text-align: center;"&gt;
+  &lt;h2 class="section__title"&gt;Ready to Get Started?&lt;/h2&gt;
+  &lt;button class="btn-primary"&gt;Get Started&lt;/button&gt;
+&lt;/section&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ FOOTER ━━━━━━━━━━━━━━━━ -->
+    <section class="comp-section">
+      <h2>Footer</h2>
+      <p>Standard footer with copyright text and optional links. Sits below all content with a top border separator.</p>
+
+      <div class="demo-row">
+        <div class="demo-box dark" style="padding: 16px;">
+          <div class="demo-label on-dark">Dark Background</div>
+          <div class="demo-footer on-dark">
+            <div class="footer-text">&copy; 2026 Recess. All rights reserved.</div>
+            <ul class="footer-links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="demo-box light" style="padding: 16px;">
+          <div class="demo-label on-light">Light Background</div>
+          <div class="demo-footer on-light">
+            <div class="footer-text">&copy; 2026 Recess. All rights reserved.</div>
+            <ul class="footer-links">
+              <li><a href="#">Privacy</a></li>
+              <li><a href="#">Terms</a></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">HTML</div>
+      <div class="code-block">
+        <pre><code>&lt;footer class="footer"&gt;
+  &lt;p class="footer__text"&gt;&amp;copy; 2026 Recess. All rights reserved.&lt;/p&gt;
+  &lt;ul class="footer__links"&gt;
+    &lt;li&gt;&lt;a class="footer__link" href="#"&gt;Privacy&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="footer__link" href="#"&gt;Terms&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a class="footer__link" href="#"&gt;Contact&lt;/a&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/footer&gt;</code></pre>
+      </div>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Component Library
+    </div>
+  </main>
+</body>
+</html>

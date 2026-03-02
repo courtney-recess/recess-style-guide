@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Effects &amp; Animations - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Effect Section ──────────────────────────────────────────────── */
+    .effect-section {
+      margin-bottom: 56px;
+    }
+
+    .effect-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .effect-section > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    .hover-hint {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-aqua);
+      background: rgba(20, 185, 214, 0.06);
+      padding: 4px 12px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    /* ── Demo Container ──────────────────────────────────────────────── */
+    .demo-container {
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 16px;
+    }
+
+    .demo-container.dark {
+      background: var(--color-navy);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .demo-container.light {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .demo-container.colorful {
+      background: linear-gradient(135deg, #14B9D6, #F27935, #1FBBA6, #ff8900);
+      border: none;
+    }
+
+    /* ── Glassmorphism Demo ───────────────────────────────────────────── */
+    .glass-demo-bg {
+      background: linear-gradient(135deg, var(--color-aqua), var(--color-burnt-orange), var(--color-forest));
+      border-radius: 12px;
+      padding: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+    }
+
+    .glass-box {
+      background: var(--glass-bg-dark);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 16px;
+      padding: 32px 48px;
+      text-align: center;
+      color: var(--text-white);
+    }
+
+    .glass-box h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .glass-box p {
+      font-size: 14px;
+      color: var(--text-white-60);
+    }
+
+    /* ── Hover Lift Demo ─────────────────────────────────────────────── */
+    .lift-card {
+      background: var(--color-navy-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      color: var(--text-white);
+      transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+      cursor: pointer;
+      text-align: center;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .lift-card:hover {
+      border-color: rgba(255, 255, 255, 0.12);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-card);
+    }
+
+    .lift-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .lift-card p {
+      font-size: 14px;
+      color: var(--text-white-55);
+    }
+
+    /* ── Image Zoom Demo ─────────────────────────────────────────────── */
+    .zoom-container {
+      overflow: hidden;
+      border-radius: 12px;
+      max-width: 320px;
+      margin: 0 auto;
+      cursor: pointer;
+    }
+
+    .zoom-inner {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, var(--color-aqua), var(--color-sea-green));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      transition: transform var(--transition-base);
+    }
+
+    .zoom-container:hover .zoom-inner {
+      transform: scale(1.04);
+    }
+
+    /* ── Button Transition Demo ──────────────────────────────────────── */
+    .btn-demo-row {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ── Border Glow Demo ────────────────────────────────────────────── */
+    .glow-card {
+      background: var(--color-navy-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      color: var(--text-white);
+      transition: border-color var(--transition-base);
+      cursor: pointer;
+      text-align: center;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+
+    .glow-card:hover {
+      border-color: rgba(20, 185, 214, 0.3);
+    }
+
+    .glow-card h3 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .glow-card p {
+      font-size: 14px;
+      color: var(--text-white-55);
+    }
+
+    /* ── Marquee Demo ────────────────────────────────────────────────── */
+    .marquee-wrapper {
+      overflow: hidden;
+      border-radius: 12px;
+      background: var(--color-navy);
+      padding: 24px 0;
+      margin-bottom: 16px;
+    }
+
+    .marquee-track {
+      display: flex;
+      gap: 48px;
+      animation: marquee-scroll 30s linear infinite;
+      width: max-content;
+    }
+
+    .marquee-item {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-white-25);
+      white-space: nowrap;
+      letter-spacing: -0.3px;
+    }
+
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Photography Overlay Demo ────────────────────────────────────── */
+    .overlay-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .overlay-box {
+      height: 120px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      padding: 8px;
+      position: relative;
+    }
+
+    .overlay-box.original {
+      background: linear-gradient(135deg, #e8a87c, #d7816a, #bd4f6c);
+    }
+
+    .overlay-box.aqua-overlay {
+      background: linear-gradient(135deg, #e8a87c, #d7816a, #bd4f6c);
+    }
+
+    .overlay-box.aqua-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: rgba(20, 185, 214, 0.20);
+    }
+
+    .overlay-box.grey-overlay {
+      background: linear-gradient(135deg, #e8a87c, #d7816a, #bd4f6c);
+    }
+
+    .overlay-box.grey-overlay::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.50);
+    }
+
+    .overlay-box.combined {
+      background: linear-gradient(135deg, #e8a87c, #d7816a, #bd4f6c);
+    }
+
+    .overlay-box.combined::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: rgba(20, 185, 214, 0.20);
+      z-index: 1;
+    }
+
+    .overlay-box.combined::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.50);
+      z-index: 2;
+    }
+
+    .overlay-box span {
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ── Transition Speed Demo ───────────────────────────────────────── */
+    .speed-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .speed-card {
+      background: var(--color-navy-light);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-card);
+      padding: 32px;
+      text-align: center;
+      color: var(--text-white);
+      cursor: pointer;
+    }
+
+    .speed-card.fast {
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .speed-card.base {
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .speed-card.slow {
+      transition: transform 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .speed-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(20, 185, 214, 0.3);
+      box-shadow: var(--shadow-card);
+    }
+
+    .speed-card .speed-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--color-aqua);
+      margin-bottom: 8px;
+    }
+
+    .speed-card .speed-value {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .speed-card .speed-name {
+      font-size: 13px;
+      color: var(--text-white-55);
+    }
+
+    /* ── Code Block ──────────────────────────────────────────────────── */
+    .code-block {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 8px;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+    }
+
+    .code-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 8px;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .overlay-row {
+        grid-template-columns: 1fr 1fr;
+      }
+      .speed-row {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html" class="active">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <h1>Effects &amp; Animations</h1>
+      <p>Interactive demos of every motion and visual effect in the design system. Hover over each element to see the effect in action.</p>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━ GLASSMORPHISM ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Glassmorphism</h2>
+      <p>Frosted glass effect using backdrop-filter blur with semi-transparent backgrounds. Used for navigation bars and overlays.</p>
+
+      <div class="glass-demo-bg">
+        <div class="glass-box">
+          <h3>Glassmorphism Panel</h3>
+          <p>backdrop-filter: blur(12px) over colorful background</p>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>background: var(--glass-bg-dark);    /* rgba(10, 15, 26, 0.75) */
+backdrop-filter: var(--glass-blur);   /* blur(12px) */
+-webkit-backdrop-filter: var(--glass-blur);
+border: 1px solid rgba(255, 255, 255, 0.15);</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ HOVER LIFT ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Hover Lift</h2>
+      <p>Cards and buttons lift upward on hover with translateY(-3px). Paired with a shadow increase for depth.</p>
+
+      <div class="hover-hint">Hover the card below</div>
+      <div class="demo-container dark">
+        <div class="lift-card">
+          <h3>Hover Me</h3>
+          <p>This card lifts translateY(-3px) on hover with a subtle shadow.</p>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>transition: transform var(--transition-base),
+            box-shadow var(--transition-base);
+
+&:hover {
+  transform: var(--hover-lift);       /* translateY(-3px) */
+  box-shadow: var(--shadow-card);     /* 0 4px 24px rgba(0,0,0,0.08) */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ IMAGE ZOOM ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Image Zoom</h2>
+      <p>Images scale to 1.04 on hover within an overflow:hidden container for a subtle zoom-in effect.</p>
+
+      <div class="hover-hint">Hover the image below</div>
+      <div class="demo-container light" style="display: flex; justify-content: center;">
+        <div class="zoom-container">
+          <div class="zoom-inner">Hover to zoom (scale 1.04)</div>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>.image-wrapper {
+  overflow: hidden;
+  border-radius: 12px;
+}
+
+.image-wrapper img {
+  transition: transform var(--transition-base);
+}
+
+.image-wrapper:hover img {
+  transform: var(--hover-scale);  /* scale(1.04) */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ BUTTON TRANSITIONS ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Button Transitions</h2>
+      <p>Primary buttons shift from aqua to sea-green on hover, with the glow shadow intensifying. Ghost buttons gain a subtle fill.</p>
+
+      <div class="hover-hint">Hover the buttons below</div>
+      <div class="demo-container dark">
+        <div class="btn-demo-row">
+          <button class="btn-primary">Hover Me</button>
+          <button class="btn-ghost">Hover Me</button>
+        </div>
+      </div>
+
+      <div class="code-label">CSS Tokens</div>
+      <div class="code-block">
+        <pre><code>/* Primary button */
+background: var(--color-primary);                /* #14B9D6 */
+box-shadow: var(--shadow-cta-glow);              /* 0 0 24px rgba(20,185,214,0.25) */
+
+/* On hover */
+background: var(--color-primary-hover);          /* #108DA3 */
+box-shadow: var(--shadow-cta-glow-hover);        /* 0 0 32px rgba(20,185,214,0.40) */
+transform: var(--hover-lift);                    /* translateY(-3px) */
+transition: var(--transition-button);            /* 200ms ease */</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ BORDER GLOW ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Border Glow</h2>
+      <p>Card borders shift to an aqua tint on hover, creating a subtle glow effect.</p>
+
+      <div class="hover-hint">Hover the card below</div>
+      <div class="demo-container dark">
+        <div class="glow-card">
+          <h3>Border Glow</h3>
+          <p>Watch the border shift to aqua rgba(20,185,214,0.3) on hover.</p>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>border: 1px solid rgba(255, 255, 255, 0.06);
+transition: border-color var(--transition-base);
+
+&:hover {
+  border-color: rgba(20, 185, 214, 0.3);
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ MARQUEE SCROLL ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Marquee Scroll</h2>
+      <p>Auto-scrolling horizontal text that loops infinitely over 30 seconds. Used for brand partner logos or feature lists.</p>
+
+      <div class="marquee-wrapper">
+        <div class="marquee-track">
+          <span class="marquee-item">Recess</span>
+          <span class="marquee-item">Relaxation</span>
+          <span class="marquee-item">Wellness</span>
+          <span class="marquee-item">Balance</span>
+          <span class="marquee-item">Calm</span>
+          <span class="marquee-item">Mindfulness</span>
+          <span class="marquee-item">Serenity</span>
+          <span class="marquee-item">Focus</span>
+          <!-- Duplicate for seamless loop -->
+          <span class="marquee-item">Recess</span>
+          <span class="marquee-item">Relaxation</span>
+          <span class="marquee-item">Wellness</span>
+          <span class="marquee-item">Balance</span>
+          <span class="marquee-item">Calm</span>
+          <span class="marquee-item">Mindfulness</span>
+          <span class="marquee-item">Serenity</span>
+          <span class="marquee-item">Focus</span>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>@keyframes marquee-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.marquee-track {
+  display: flex;
+  gap: 48px;
+  animation: marquee-scroll var(--animation-marquee) linear infinite;
+  /* --animation-marquee: 30s */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ PHOTOGRAPHY OVERLAY ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Photography Overlay</h2>
+      <p>Brand-approved image treatment with layered overlays. Aqua at 20% opacity, then grey at 50%, combined for brand consistency.</p>
+
+      <div class="overlay-row">
+        <div class="overlay-box original">
+          <span>Original</span>
+        </div>
+        <div class="overlay-box aqua-overlay">
+          <span style="position: relative; z-index: 3;">+ Aqua 20%</span>
+        </div>
+        <div class="overlay-box grey-overlay">
+          <span style="position: relative; z-index: 3;">+ Grey 50%</span>
+        </div>
+        <div class="overlay-box combined">
+          <span>Combined</span>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>.image-overlay::before {
+  background: var(--overlay-aqua);  /* rgba(20, 185, 214, 0.20) */
+}
+
+.image-overlay::after {
+  background: var(--overlay-grey);  /* rgba(0, 0, 0, 0.50) */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ TRANSITION SPEED COMPARISON ━━━━━━━━━━━━━━━━ -->
+    <section class="effect-section">
+      <h2>Transition Speed Comparison</h2>
+      <p>Three identical cards with different transition durations. Hover each to feel the difference between fast, base, and slow.</p>
+
+      <div class="hover-hint">Hover each card to compare speeds</div>
+      <div class="demo-container dark">
+        <div class="speed-row">
+          <div class="speed-card fast">
+            <div class="speed-label">Fast</div>
+            <div class="speed-value">0.2s</div>
+            <div class="speed-name">--transition-fast</div>
+          </div>
+          <div class="speed-card base">
+            <div class="speed-label">Base</div>
+            <div class="speed-value">0.3s</div>
+            <div class="speed-name">--transition-base</div>
+          </div>
+          <div class="speed-card slow">
+            <div class="speed-label">Slow</div>
+            <div class="speed-value">0.4s</div>
+            <div class="speed-name">--transition-slow</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">CSS Tokens</div>
+      <div class="code-block">
+        <pre><code>--transition-fast:   0.2s ease;   /* Hover states, color changes */
+--transition-base:   0.3s ease;   /* Card lifts, border glows */
+--transition-slow:   0.4s ease;   /* Page transitions, large reveals */
+--transition-button: 200ms ease;  /* Button-specific timing */</code></pre>
+      </div>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Effects &amp; Animations
+    </div>
+  </main>
+</body>
+</html>

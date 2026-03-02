@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Layouts - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Layout Section ──────────────────────────────────────────────── */
+    .layout-section {
+      margin-bottom: 56px;
+    }
+
+    .layout-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .layout-section > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 24px;
+    }
+
+    /* ── Wireframe Container ─────────────────────────────────────────── */
+    .wireframe {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 16px;
+      position: relative;
+    }
+
+    .wireframe-label {
+      position: absolute;
+      top: 8px;
+      right: 12px;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      background: var(--color-grey-50);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── Placeholder Boxes ───────────────────────────────────────────── */
+    .box {
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #ffffff;
+    }
+
+    .box.aqua { background: var(--color-aqua); }
+    .box.sea-green { background: var(--color-sea-green); }
+    .box.navy { background: var(--color-navy); color: var(--text-white-60); }
+    .box.grey { background: var(--color-grey-500); }
+    .box.orange { background: var(--color-orange); }
+    .box.light-grey {
+      background: var(--color-grey-200);
+      color: var(--color-grey-500);
+    }
+
+    /* ── Token Table ─────────────────────────────────────────────────── */
+    .token-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-bottom: 16px;
+    }
+
+    .token-table th {
+      text-align: left;
+      padding: 10px 16px;
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      background: var(--color-grey-50);
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .token-table td {
+      padding: 10px 16px;
+      border-bottom: 1px solid var(--color-grey-200);
+      color: var(--text-black);
+    }
+
+    .token-table td code {
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    /* ── Spacing Ruler ───────────────────────────────────────────────── */
+    .spacing-ruler {
+      display: flex;
+      align-items: stretch;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .spacing-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .spacing-bar {
+      border-radius: 4px;
+      width: 48px;
+    }
+
+    .spacing-value {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-black);
+    }
+
+    .spacing-name {
+      font-size: 11px;
+      color: var(--text-body);
+      text-align: center;
+    }
+
+    /* ── Code Block ──────────────────────────────────────────────────── */
+    .code-block {
+      background: var(--color-grey-50);
+      border: 1px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin-bottom: 8px;
+    }
+
+    .code-block pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--color-grey-800);
+    }
+
+    .code-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 8px;
+    }
+
+    /* ── Responsive Comparison ───────────────────────────────────────── */
+    .responsive-row {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .responsive-frame {
+      border: 2px solid var(--color-grey-200);
+      border-radius: 10px;
+      padding: 16px;
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .responsive-frame .frame-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-grey-500);
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    /* ── Annotation Arrows ───────────────────────────────────────────── */
+    .annotation {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-aqua);
+      margin: 8px 0;
+    }
+
+    .annotation .line {
+      flex: 1;
+      height: 1px;
+      background: var(--color-aqua);
+      opacity: 0.3;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+      .responsive-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html" class="active">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <h1>Layout Patterns</h1>
+      <p>Spacing, grid structures, content widths, and responsive breakpoints used across all Recess pages.</p>
+    </div>
+
+    <!-- ━━━━━━━━━━━━━━━━ SECTION STRUCTURE ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Section Structure</h2>
+      <p>Every content section uses consistent vertical and horizontal padding with a centered max-width container.</p>
+
+      <div class="wireframe">
+        <div class="wireframe-label">Section Anatomy</div>
+        <!-- Outer padding visualization -->
+        <div style="border: 2px dashed rgba(20, 185, 214, 0.3); border-radius: 8px; padding: 0; position: relative;">
+          <!-- Top padding -->
+          <div style="height: 40px; background: rgba(20, 185, 214, 0.06); display: flex; align-items: center; justify-content: center; border-radius: 6px 6px 0 0;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--color-aqua);">padding-top: 100px</span>
+          </div>
+          <!-- Content row with side padding -->
+          <div style="display: flex;">
+            <div style="width: 40px; background: rgba(20, 185, 214, 0.06); display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; text-orientation: mixed;">
+              <span style="font-size: 10px; font-weight: 600; color: var(--color-aqua);">48px</span>
+            </div>
+            <div style="flex: 1; padding: 20px;">
+              <div class="box aqua" style="height: 80px; max-width: 100%;">max-width: 1160px (centered)</div>
+            </div>
+            <div style="width: 40px; background: rgba(20, 185, 214, 0.06); display: flex; align-items: center; justify-content: center; writing-mode: vertical-rl; text-orientation: mixed;">
+              <span style="font-size: 10px; font-weight: 600; color: var(--color-aqua);">48px</span>
+            </div>
+          </div>
+          <!-- Bottom padding -->
+          <div style="height: 40px; background: rgba(20, 185, 214, 0.06); display: flex; align-items: center; justify-content: center; border-radius: 0 0 6px 6px;">
+            <span style="font-size: 11px; font-weight: 600; color: var(--color-aqua);">padding-bottom: 100px</span>
+          </div>
+        </div>
+      </div>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--spacing-section-y</code></td>
+            <td>100px</td>
+            <td>Top and bottom section padding</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-section-x</code></td>
+            <td>48px</td>
+            <td>Left and right section padding</td>
+          </tr>
+          <tr>
+            <td><code>--max-width-content</code></td>
+            <td>1160px</td>
+            <td>Maximum width of content container</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-section-y-mobile</code></td>
+            <td>60px</td>
+            <td>Reduced vertical padding on mobile</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-section-x-mobile</code></td>
+            <td>24px</td>
+            <td>Reduced horizontal padding on mobile</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>.section {
+  padding: var(--spacing-section-y) var(--spacing-section-x);
+  max-width: var(--max-width-content);
+  margin: 0 auto;
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ GRID PATTERNS ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Grid Patterns</h2>
+      <p>Responsive grids use CSS Grid with auto-fit and a 20px gap. Cards reflow to fill available space.</p>
+
+      <!-- 2-Column -->
+      <div class="wireframe">
+        <div class="wireframe-label">2-Column Grid</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+          <div class="box aqua" style="height: 100px;">Column 1</div>
+          <div class="box sea-green" style="height: 100px;">Column 2</div>
+        </div>
+        <div class="annotation">
+          <span>gap: 20px</span>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <!-- 3-Column -->
+      <div class="wireframe">
+        <div class="wireframe-label">3-Column Grid</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+          <div class="box aqua" style="height: 100px;">Col 1</div>
+          <div class="box sea-green" style="height: 100px;">Col 2</div>
+          <div class="box aqua" style="height: 100px;">Col 3</div>
+        </div>
+        <div class="annotation">
+          <span>gap: 20px</span>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <!-- 4-Column -->
+      <div class="wireframe">
+        <div class="wireframe-label">4-Column Grid</div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px;">
+          <div class="box sea-green" style="height: 80px;">1</div>
+          <div class="box aqua" style="height: 80px;">2</div>
+          <div class="box sea-green" style="height: 80px;">3</div>
+          <div class="box aqua" style="height: 80px;">4</div>
+        </div>
+        <div class="annotation">
+          <span>gap: 20px</span>
+          <div class="line"></div>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-gap);  /* 20px */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ HERO PATTERN ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Hero Pattern</h2>
+      <p>Full-height hero section (88vh on dark, 80vh on light) with centered text area constrained to 680px max-width.</p>
+
+      <div class="wireframe">
+        <div class="wireframe-label">Hero Layout</div>
+        <div style="background: var(--color-navy); border-radius: 8px; min-height: 240px; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 32px; position: relative;">
+          <div style="position: absolute; top: 8px; left: 12px; font-size: 10px; font-weight: 600; color: var(--text-white-25);">min-height: 88vh</div>
+          <!-- Text zone -->
+          <div style="border: 2px dashed rgba(20, 185, 214, 0.4); border-radius: 8px; padding: 24px; max-width: 420px; width: 100%; text-align: center;">
+            <div style="font-size: 10px; font-weight: 600; color: var(--color-aqua); margin-bottom: 12px;">max-width: 680px</div>
+            <div class="box light-grey" style="height: 14px; width: 60%; margin: 0 auto 8px; border-radius: 4px;"></div>
+            <div class="box aqua" style="height: 24px; width: 90%; margin: 0 auto 8px; border-radius: 4px;">Headline</div>
+            <div class="box light-grey" style="height: 10px; width: 70%; margin: 0 auto 16px; border-radius: 4px;"></div>
+            <div style="display: flex; gap: 10px; justify-content: center;">
+              <div class="box aqua" style="height: 32px; width: 100px; border-radius: 8px; font-size: 10px;">CTA</div>
+              <div class="box grey" style="height: 32px; width: 100px; border-radius: 8px; font-size: 10px;">Ghost</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 88vh;
+  padding: 0 var(--spacing-section-x);
+  text-align: center;
+}
+
+.hero__title {
+  max-width: var(--max-width-hero-text);  /* 680px */
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ RESPONSIVE BREAKPOINTS ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Responsive Breakpoints</h2>
+      <p>Layouts adapt at two breakpoints: 900px (tablet) and 600px (mobile). Grids stack to single column and padding reduces.</p>
+
+      <div class="responsive-row">
+        <!-- Desktop -->
+        <div class="responsive-frame" style="width: 340px;">
+          <div class="frame-label">Desktop (&gt; 900px)</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px;">
+            <div class="box aqua" style="height: 50px; font-size: 9px;">1</div>
+            <div class="box sea-green" style="height: 50px; font-size: 9px;">2</div>
+            <div class="box aqua" style="height: 50px; font-size: 9px;">3</div>
+          </div>
+          <div style="font-size: 10px; color: var(--color-grey-500); margin-top: 8px; text-align: center;">padding: 100px 48px</div>
+        </div>
+
+        <!-- Tablet -->
+        <div class="responsive-frame" style="width: 220px;">
+          <div class="frame-label">Tablet (900px)</div>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+            <div class="box aqua" style="height: 50px; font-size: 9px;">1</div>
+            <div class="box sea-green" style="height: 50px; font-size: 9px;">2</div>
+            <div class="box aqua" style="height: 50px; font-size: 9px;">3</div>
+            <div style="height: 50px;"></div>
+          </div>
+          <div style="font-size: 10px; color: var(--color-grey-500); margin-top: 8px; text-align: center;">padding: 60px 24px</div>
+        </div>
+
+        <!-- Mobile -->
+        <div class="responsive-frame" style="width: 140px;">
+          <div class="frame-label">Mobile (600px)</div>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 8px;">
+            <div class="box aqua" style="height: 50px; font-size: 9px;">1</div>
+            <div class="box sea-green" style="height: 50px; font-size: 9px;">2</div>
+            <div class="box aqua" style="height: 50px; font-size: 9px;">3</div>
+          </div>
+          <div style="font-size: 10px; color: var(--color-grey-500); margin-top: 8px; text-align: center;">padding: 60px 24px</div>
+        </div>
+      </div>
+
+      <table class="token-table" style="margin-top: 24px;">
+        <thead>
+          <tr>
+            <th>Breakpoint</th>
+            <th>Section Padding</th>
+            <th>Grid Columns</th>
+            <th>Hero Height</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Desktop (&gt; 900px)</td>
+            <td>100px / 48px</td>
+            <td>auto-fit, minmax(300px, 1fr)</td>
+            <td>88vh (dark) / 80vh (light)</td>
+          </tr>
+          <tr>
+            <td>Tablet (&le; 900px)</td>
+            <td>60px / 24px</td>
+            <td>1fr (stacked)</td>
+            <td>70vh (dark) / 65vh (light)</td>
+          </tr>
+          <tr>
+            <td>Mobile (&le; 600px)</td>
+            <td>60px / 24px</td>
+            <td>1fr (stacked)</td>
+            <td>70vh (dark) / 65vh (light)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="code-label">CSS</div>
+      <div class="code-block">
+        <pre><code>@media (max-width: 900px) {
+  :root {
+    --spacing-section-y: var(--spacing-section-y-mobile);   /* 60px */
+    --spacing-section-x: var(--spacing-section-x-mobile);   /* 24px */
+    --spacing-card-padding: var(--spacing-card-padding-sm);  /* 28px */
+  }
+
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}</code></pre>
+      </div>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ SPACING RULES ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Spacing Rules</h2>
+      <p>All spacing values are defined as tokens. Use them for consistent rhythm across components and sections.</p>
+
+      <div class="wireframe">
+        <div class="wireframe-label">Spacing Scale</div>
+        <div style="display: flex; gap: 20px; align-items: flex-end; flex-wrap: wrap; padding: 16px 0;">
+          <div class="spacing-item">
+            <div class="spacing-bar box aqua" style="height: 6px;"></div>
+            <div class="spacing-value">6px</div>
+            <div class="spacing-name">gap-sm</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box aqua" style="height: 16px;"></div>
+            <div class="spacing-value">16px</div>
+            <div class="spacing-name">gap-md</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box aqua" style="height: 20px;"></div>
+            <div class="spacing-value">20px</div>
+            <div class="spacing-name">gap</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box sea-green" style="height: 28px;"></div>
+            <div class="spacing-value">28px</div>
+            <div class="spacing-name">card-sm</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box sea-green" style="height: 36px;"></div>
+            <div class="spacing-value">36px</div>
+            <div class="spacing-name">card</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box sea-green" style="height: 52px;"></div>
+            <div class="spacing-value">52px</div>
+            <div class="spacing-name">card-lg</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box orange" style="height: 60px;"></div>
+            <div class="spacing-value">60px</div>
+            <div class="spacing-name">section-y (mob)</div>
+          </div>
+          <div class="spacing-item">
+            <div class="spacing-bar box orange" style="height: 100px;"></div>
+            <div class="spacing-value">100px</div>
+            <div class="spacing-name">section-y</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--spacing-gap-sm</code></td>
+            <td>6px</td>
+            <td>Tight gaps between related elements</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-gap-md</code></td>
+            <td>16px</td>
+            <td>Medium gaps, button groups, footer links</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-gap</code></td>
+            <td>20px</td>
+            <td>Standard gap between grid items, nav links</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-card-padding-sm</code></td>
+            <td>28px</td>
+            <td>Card padding on mobile</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-card-padding</code></td>
+            <td>36px</td>
+            <td>Standard card padding</td>
+          </tr>
+          <tr>
+            <td><code>--spacing-card-padding-lg</code></td>
+            <td>52px</td>
+            <td>Large card padding</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- ━━━━━━━━━━━━━━━━ CONTENT WIDTHS ━━━━━━━━━━━━━━━━ -->
+    <section class="layout-section">
+      <h2>Content Widths</h2>
+      <p>Two key width constraints keep content readable and well-proportioned.</p>
+
+      <div class="wireframe">
+        <div class="wireframe-label">Width Comparison</div>
+        <div style="padding: 16px 0;">
+          <!-- 1160px bar -->
+          <div style="margin-bottom: 16px;">
+            <div class="box aqua" style="height: 44px; width: 100%; max-width: 100%; position: relative;">
+              <span>1160px &mdash; max-width-content</span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-body); margin-top: 4px;">Used for: section containers, card grids, stat rows</div>
+          </div>
+          <!-- 680px bar -->
+          <div>
+            <div class="box sea-green" style="height: 44px; width: 58.6%; position: relative;">
+              <span>680px &mdash; max-width-hero-text</span>
+            </div>
+            <div style="font-size: 11px; color: var(--text-body); margin-top: 4px;">Used for: hero headlines, hero subtitles</div>
+          </div>
+        </div>
+      </div>
+
+      <table class="token-table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Value</th>
+            <th>Usage</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>--max-width-content</code></td>
+            <td>1160px</td>
+            <td>Main content container width</td>
+          </tr>
+          <tr>
+            <td><code>--max-width-hero-text</code></td>
+            <td>680px</td>
+            <td>Hero text area width for readability</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Layout Patterns
+    </div>
+  </main>
+</body>
+</html>

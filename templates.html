@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Templates - Recess Design System</title>
+  <link rel="stylesheet" href="../../brand/tokens.css">
+  <style>
+    /* ── Layout ──────────────────────────────────────────────────────── */
+    body {
+      margin: 0;
+      background: #ffffff;
+      color: var(--text-black);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* ── Sidebar ─────────────────────────────────────────────────────── */
+    .sidebar {
+      width: 260px;
+      min-height: 100vh;
+      background: var(--color-grey-50);
+      border-right: 1px solid var(--color-grey-200);
+      padding: 32px 0;
+      position: fixed;
+      top: 0;
+      left: 0;
+      overflow-y: auto;
+    }
+
+    .sidebar-logo {
+      padding: 0 28px 28px;
+      border-bottom: 1px solid var(--color-grey-200);
+      margin-bottom: 16px;
+    }
+
+    .sidebar-logo span {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: -0.5px;
+      color: var(--color-aqua);
+    }
+
+    .sidebar-logo small {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-grey-500);
+      margin-top: 4px;
+    }
+
+    .sidebar nav {
+      padding: 0 16px;
+    }
+
+    .sidebar nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--color-grey-500);
+      transition: all 0.15s ease;
+      margin-bottom: 2px;
+    }
+
+    .sidebar nav a:hover {
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .sidebar nav a.active {
+      background: rgba(20, 185, 214, 0.10);
+      color: var(--color-aqua);
+      font-weight: 600;
+    }
+
+    .sidebar nav a .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 15px;
+      opacity: 0.7;
+    }
+
+    .sidebar nav a.active .nav-icon {
+      opacity: 1;
+    }
+
+    /* ── Main Content ────────────────────────────────────────────────── */
+    .main {
+      margin-left: 260px;
+      flex: 1;
+      padding: 56px 64px 80px;
+      max-width: 1080px;
+    }
+
+    /* ── Page Header ─────────────────────────────────────────────────── */
+    .page-header {
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-black);
+      margin-bottom: 12px;
+    }
+
+    .page-header p {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--text-body);
+      max-width: 560px;
+    }
+
+    /* ── Template Card ───────────────────────────────────────────────── */
+    .template-card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 32px;
+      transition: box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .template-card:hover {
+      border-color: rgba(20, 185, 214, 0.25);
+      box-shadow: 0 8px 32px rgba(20, 185, 214, 0.08);
+    }
+
+    /* ── Template Preview ────────────────────────────────────────────── */
+    .template-preview {
+      height: 260px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .template-preview.dark-preview {
+      background: var(--color-navy);
+    }
+
+    .template-preview.light-preview {
+      background: #ffffff;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .template-preview.partner-preview {
+      background: var(--color-navy);
+    }
+
+    /* Mini wireframe inside preview */
+    .mini-wireframe {
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Mini nav */
+    .mini-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 16px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+
+    .mini-nav.dark-nav {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mini-nav.light-nav {
+      background: rgba(0, 0, 0, 0.02);
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .mini-nav .nav-dot {
+      width: 40px;
+      height: 8px;
+      border-radius: 4px;
+    }
+
+    .mini-nav.dark-nav .nav-dot {
+      background: rgba(255, 255, 255, 0.20);
+    }
+
+    .mini-nav.light-nav .nav-dot {
+      background: var(--color-grey-200);
+    }
+
+    .mini-nav .nav-dots {
+      display: flex;
+      gap: 8px;
+    }
+
+    .mini-nav .nav-dots span {
+      width: 24px;
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    .mini-nav.dark-nav .nav-dots span {
+      background: rgba(255, 255, 255, 0.10);
+    }
+
+    .mini-nav.light-nav .nav-dots span {
+      background: var(--color-grey-200);
+    }
+
+    /* Mini hero */
+    .mini-hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .mini-hero .hero-line {
+      border-radius: 4px;
+    }
+
+    .mini-hero .hero-line.dark-line {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .mini-hero .hero-line.light-line {
+      background: var(--color-grey-200);
+    }
+
+    .mini-hero .hero-btn {
+      width: 64px;
+      height: 20px;
+      border-radius: 6px;
+      margin-top: 4px;
+    }
+
+    .mini-hero .hero-btn.aqua-btn {
+      background: var(--color-aqua);
+    }
+
+    .mini-hero .hero-btn.orange-btn {
+      background: var(--color-orange);
+    }
+
+    /* Mini cards row */
+    .mini-cards {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .mini-card-box {
+      flex: 1;
+      height: 40px;
+      border-radius: 6px;
+    }
+
+    .mini-card-box.dark-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mini-card-box.light-card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+    }
+
+    /* Partner color indicator */
+    .partner-accent-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--color-aqua), var(--color-orange), var(--color-forest));
+    }
+
+    /* ── Template Info ───────────────────────────────────────────────── */
+    .template-info {
+      padding: 24px 28px;
+    }
+
+    .template-info .template-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      margin-bottom: 12px;
+    }
+
+    .template-badge.dark-badge {
+      background: rgba(10, 15, 26, 0.08);
+      color: var(--color-navy);
+    }
+
+    .template-badge.light-badge {
+      background: rgba(255, 137, 0, 0.08);
+      color: var(--color-orange);
+    }
+
+    .template-badge.partner-badge {
+      background: rgba(20, 185, 214, 0.08);
+      color: var(--color-aqua);
+    }
+
+    .template-info h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+
+    .template-info p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 20px;
+    }
+
+    .template-info .template-features {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .template-info .template-features li {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 6px;
+      background: var(--color-grey-50);
+      color: var(--color-grey-500);
+      border: 1px solid var(--color-grey-200);
+    }
+
+    .template-info .open-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 24px;
+      font-family: var(--font-family);
+      font-size: 14px;
+      font-weight: 600;
+      color: #ffffff;
+      background: var(--color-aqua);
+      border: none;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      cursor: pointer;
+    }
+
+    .template-info .open-btn:hover {
+      background: var(--color-sea-green);
+      transform: translateY(-1px);
+    }
+
+    /* ── Usage Section ───────────────────────────────────────────────── */
+    .usage-section {
+      margin-top: 48px;
+      margin-bottom: 48px;
+    }
+
+    .usage-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .usage-section p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 16px;
+    }
+
+    .usage-steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: step;
+    }
+
+    .usage-steps li {
+      counter-increment: step;
+      display: flex;
+      gap: 14px;
+      padding: 14px 0;
+      border-bottom: 1px solid var(--color-grey-200);
+      font-size: 14px;
+      line-height: 1.5;
+      color: var(--text-black);
+    }
+
+    .usage-steps li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(20, 185, 214, 0.08);
+      color: var(--color-aqua);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ── Footer ───────────────────────────────────────────────────────── */
+    .footer {
+      margin-top: 64px;
+      padding-top: 32px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      color: var(--text-placeholder);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main {
+        margin-left: 0;
+        padding: 32px 24px 60px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <img src="assets/logo-full-aqua.png" alt="Recess" style="height: 28px;">
+      <small>Design System</small>
+    </div>
+    <nav>
+      <a href="index.html">
+        <span class="nav-icon">&#9679;</span> Overview
+      </a>
+      <a href="brand.html">
+        <span class="nav-icon">&#9830;</span> Brand
+      </a>
+      <a href="colors.html">
+        <span class="nav-icon">&#9673;</span> Colors
+      </a>
+      <a href="typography.html">
+        <span class="nav-icon">Aa</span> Typography
+      </a>
+      <a href="components.html">
+        <span class="nav-icon">&#9645;</span> Components
+      </a>
+      <a href="layouts.html">
+        <span class="nav-icon">&#9638;</span> Layouts
+      </a>
+      <a href="effects.html">
+        <span class="nav-icon">&#10024;</span> Effects
+      </a>
+      <a href="photography.html">
+        <span class="nav-icon">&#9711;</span> Photography
+      </a>
+      <a href="templates.html" class="active">
+        <span class="nav-icon">&#9783;</span> Templates
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="page-header">
+      <h1>Starter Templates</h1>
+      <p>Ready-to-use landing page templates built with brand tokens. Copy, customize, and launch.</p>
+    </div>
+
+    <!-- ━━━━━━━ DARK TEMPLATE ━━━━━━━ -->
+    <div class="template-card">
+      <div class="template-preview dark-preview">
+        <div class="mini-wireframe">
+          <div class="mini-nav dark-nav">
+            <div class="nav-dot"></div>
+            <div class="nav-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mini-hero">
+            <div class="hero-line dark-line" style="width: 50%; height: 8px;"></div>
+            <div class="hero-line dark-line" style="width: 80%; height: 14px;"></div>
+            <div class="hero-line dark-line" style="width: 60%; height: 8px;"></div>
+            <div class="hero-btn aqua-btn"></div>
+          </div>
+          <div class="mini-cards">
+            <div class="mini-card-box dark-card"></div>
+            <div class="mini-card-box dark-card"></div>
+            <div class="mini-card-box dark-card"></div>
+          </div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div class="template-badge dark-badge">Dark Theme</div>
+        <h3>Dark Landing Page</h3>
+        <p>Navy background with glassmorphism navigation, aqua highlights, and the full dark component set. Ideal for premium partner pages and product launches.</p>
+        <ul class="template-features">
+          <li>Glassmorphism Nav</li>
+          <li>88vh Hero</li>
+          <li>Card Grid</li>
+          <li>Stat Blocks</li>
+          <li>CTA Section</li>
+          <li>Footer</li>
+        </ul>
+        <a href="assets/template-dark.html" class="open-btn">Open Template &rarr;</a>
+      </div>
+    </div>
+
+    <!-- ━━━━━━━ LIGHT TEMPLATE ━━━━━━━ -->
+    <div class="template-card">
+      <div class="template-preview light-preview">
+        <div class="mini-wireframe">
+          <div class="mini-nav light-nav">
+            <div class="nav-dot"></div>
+            <div class="nav-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mini-hero">
+            <div class="hero-line light-line" style="width: 50%; height: 8px;"></div>
+            <div class="hero-line light-line" style="width: 80%; height: 14px;"></div>
+            <div class="hero-line light-line" style="width: 60%; height: 8px;"></div>
+            <div class="hero-btn orange-btn"></div>
+          </div>
+          <div class="mini-cards">
+            <div class="mini-card-box light-card"></div>
+            <div class="mini-card-box light-card"></div>
+            <div class="mini-card-box light-card"></div>
+          </div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div class="template-badge light-badge">Light Theme</div>
+        <h3>Light Landing Page</h3>
+        <p>White background with clean navigation and orange accent colors. Perfect for consumer-facing pages, brand storytelling, and product detail pages.</p>
+        <ul class="template-features">
+          <li>Clean White Nav</li>
+          <li>80vh Hero</li>
+          <li>Card Grid</li>
+          <li>Stat Blocks</li>
+          <li>CTA Section</li>
+          <li>Footer</li>
+        </ul>
+        <a href="assets/template-light.html" class="open-btn">Open Template &rarr;</a>
+      </div>
+    </div>
+
+    <!-- ━━━━━━━ PARTNER TEMPLATE ━━━━━━━ -->
+    <div class="template-card">
+      <div class="template-preview partner-preview">
+        <div class="mini-wireframe">
+          <div class="mini-nav dark-nav">
+            <div class="nav-dot"></div>
+            <div class="nav-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+          <div class="mini-hero">
+            <div class="hero-line dark-line" style="width: 50%; height: 8px;"></div>
+            <div class="hero-line dark-line" style="width: 80%; height: 14px;"></div>
+            <div class="hero-line dark-line" style="width: 60%; height: 8px;"></div>
+            <div class="hero-btn aqua-btn"></div>
+          </div>
+          <div class="mini-cards">
+            <div class="mini-card-box dark-card"></div>
+            <div class="mini-card-box dark-card"></div>
+            <div class="mini-card-box dark-card"></div>
+          </div>
+          <div class="partner-accent-bar"></div>
+        </div>
+      </div>
+      <div class="template-info">
+        <div class="template-badge partner-badge">Partner Theme</div>
+        <h3>Partner Landing Page</h3>
+        <p>Based on the dark template with clearly marked partner color slots. Includes HTML comments explaining exactly where and how to swap in partner brand colors.</p>
+        <ul class="template-features">
+          <li>Partner Color Slots</li>
+          <li>Customization Guide</li>
+          <li>Glassmorphism Nav</li>
+          <li>Full Section Set</li>
+          <li>Commented Instructions</li>
+        </ul>
+        <a href="assets/template-partner.html" class="open-btn">Open Template &rarr;</a>
+      </div>
+    </div>
+
+    <!-- ━━━━━━━ HOW TO USE ━━━━━━━ -->
+    <section class="usage-section">
+      <h2>How to Use Templates</h2>
+      <p>Follow these steps to create a new landing page from a template.</p>
+
+      <ol class="usage-steps">
+        <li>Choose a template (Dark, Light, or Partner) based on the project requirements</li>
+        <li>Open the template file and save a copy with your project name</li>
+        <li>Search for <code style="font-family: 'SF Mono', monospace; font-size: 13px; background: rgba(20, 185, 214, 0.06); color: var(--color-sea-green); padding: 2px 6px; border-radius: 4px;">CUSTOMIZE</code> comments to find all placeholder content</li>
+        <li>Replace placeholder text with your actual content (headlines, descriptions, stats)</li>
+        <li>For partner templates, replace the accent color as noted in the <code style="font-family: 'SF Mono', monospace; font-size: 13px; background: rgba(20, 185, 214, 0.06); color: var(--color-sea-green); padding: 2px 6px; border-radius: 4px;">PARTNER COLOR</code> comments</li>
+        <li>Add real images and update the navigation links</li>
+        <li>Test at desktop, tablet (900px), and mobile (600px) breakpoints</li>
+      </ol>
+    </section>
+
+    <div class="footer">
+      Recess Design System v5.6.0 &middot; Starter Templates
+    </div>
+  </main>
+</body>
+</html>
