@@ -428,6 +428,164 @@
       font-weight: 700;
     }
 
+    /* ── Prompt Templates ────────────────────────────────────────────── */
+    .prompts-section {
+      margin-top: 56px;
+      margin-bottom: 48px;
+    }
+
+    .prompts-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: -0.3px;
+      color: var(--text-black);
+      margin-bottom: 8px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--color-grey-200);
+    }
+
+    .prompts-section > p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-body);
+      margin-bottom: 28px;
+    }
+
+    .prompt-card {
+      background: #ffffff;
+      border: 1px solid var(--color-grey-200);
+      border-radius: 16px;
+      overflow: hidden;
+      margin-bottom: 24px;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .prompt-card:hover {
+      border-color: rgba(20, 185, 214, 0.25);
+      box-shadow: 0 4px 20px rgba(20, 185, 214, 0.06);
+    }
+
+    .prompt-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 20px;
+      border-bottom: 1px solid var(--color-grey-200);
+      background: var(--color-grey-50);
+    }
+
+    .prompt-card-header .prompt-label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .prompt-card-header .prompt-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    .prompt-icon.dark-icon {
+      background: rgba(10, 15, 26, 0.08);
+      color: var(--color-navy);
+    }
+
+    .prompt-icon.light-icon {
+      background: rgba(255, 137, 0, 0.08);
+      color: var(--color-orange);
+    }
+
+    .prompt-icon.partner-icon {
+      background: rgba(20, 185, 214, 0.08);
+      color: var(--color-aqua);
+    }
+
+    .prompt-icon.generic-icon {
+      background: rgba(31, 187, 166, 0.08);
+      color: var(--color-forest);
+    }
+
+    .prompt-card-header h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-black);
+      margin: 0;
+      letter-spacing: -0.1px;
+    }
+
+    .prompt-card-header .prompt-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+      background: rgba(20, 185, 214, 0.06);
+      color: var(--color-sea-green);
+    }
+
+    .copy-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      font-family: var(--font-family);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--color-aqua);
+      background: rgba(20, 185, 214, 0.06);
+      border: 1px solid rgba(20, 185, 214, 0.15);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .copy-btn:hover {
+      background: rgba(20, 185, 214, 0.12);
+      border-color: rgba(20, 185, 214, 0.30);
+    }
+
+    .copy-btn.copied {
+      color: var(--color-forest);
+      background: rgba(31, 187, 166, 0.08);
+      border-color: rgba(31, 187, 166, 0.20);
+    }
+
+    .prompt-code {
+      padding: 20px 24px;
+      background: #fafbfc;
+      overflow-x: auto;
+    }
+
+    .prompt-code pre {
+      margin: 0;
+      font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.7;
+      color: var(--color-grey-800);
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+
+    .prompt-description {
+      padding: 14px 20px;
+      border-top: 1px solid var(--color-grey-200);
+      font-size: 13px;
+      line-height: 1.6;
+      color: var(--text-body);
+      background: #ffffff;
+    }
+
+    .prompt-description strong {
+      color: var(--text-black);
+      font-weight: 600;
+    }
+
     /* ── Footer ───────────────────────────────────────────────────────── */
     .footer {
       margin-top: 64px;
@@ -609,6 +767,247 @@
       </div>
     </div>
 
+    <!-- ━━━━━━━ PROMPT TEMPLATES ━━━━━━━ -->
+    <section class="prompts-section">
+      <h2>Prompt Templates</h2>
+      <p>Copy-paste these prompts into Claude to build brand-consistent landing pages. Each prompt includes all the rules, tokens, and structure needed — just fill in the brackets.</p>
+
+      <!-- ── Dark Landing Page Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon dark-icon">&#9790;</div>
+            <div>
+              <h4>Dark Landing Page</h4>
+              <span class="prompt-tag">Most Used</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-dark')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-dark">Build a Recess landing page with these exact specifications:
+
+THEME: Dark (navy background #0a0f1a)
+PARTNER: [Partner name or "Recess internal"]
+GOAL: [Brand awareness / Lead generation / Case study / Event promotion]
+
+BRAND RULES (non-negotiable):
+- Font: Inter only (Google Fonts, weights 400–900)
+- Primary color: #14B9D6 (aqua) — used for CTAs, accents, section labels
+- Hover on dark: #108DA3 (sea green)
+- Background: #0a0f1a (navy)
+- Text: rgba(255,255,255,0.85) body, rgba(255,255,255,0.60) secondary
+- Nav: fixed, glassmorphism (backdrop-filter: blur(12px), bg rgba(10,15,26,0.75), border rgba(255,255,255,0.06))
+- Logo: use the actual logo image file — never recreate as text. Use logo-full-white.png at height 28px in nav
+- Hero: min-height 88vh, headline clamp(42px,6vw,76px) weight 900 tracking -2px, subhead clamp(18px,1.5vw,24px) weight 400
+- Section labels: 11px uppercase, letter-spacing 2px, aqua color
+- Section titles: clamp(28px,3.5vw,44px) weight 800
+- Max content width: 1160px centered
+- Section padding: 100px vertical, 48px horizontal
+- Card radius: 16px, button radius: 10px
+- Card hover: border glow rgba(20,185,214,0.15) + translateY(-3px)
+- Button hover: color shift + translateY(-1px) + shadow 0 0 32px rgba(20,185,214,0.40)
+- All transitions: 0.2–0.4s ease
+- Photography: always overlay (aqua 20% + grey 50%), never bare images
+- Responsive: stack at 900px, adjust at 600px
+
+REQUIRED SECTIONS:
+1. Nav (fixed, glassmorphism, logo left, links + CTA right)
+2. Hero (headline, subheadline, CTA button, 88vh)
+3. At least 2 content sections (features, stats, cards, testimonials)
+4. CTA section near bottom
+5. Footer (logo, copyright, links)
+
+OUTPUT: Single self-contained HTML file, all CSS inline except Google Fonts import.
+
+CONTENT TO USE:
+- Headline: [Your headline]
+- Subheadline: [Your subheadline]
+- CTA text: [Your CTA label]
+- Sections: [Describe what sections you need and any specific copy]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Premium partner pages, product launches, event promos. Uses the Kraft Heinz-style dark theme with glassmorphism effects.
+        </div>
+      </div>
+
+      <!-- ── Light Landing Page Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon light-icon">&#9788;</div>
+            <div>
+              <h4>Light Landing Page</h4>
+              <span class="prompt-tag">Consumer-Facing</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-light')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-light">Build a Recess landing page with these exact specifications:
+
+THEME: Light (white background #ffffff)
+PARTNER: [Partner name or "Recess internal"]
+GOAL: [Brand awareness / Lead generation / Case study / Event promotion]
+
+BRAND RULES (non-negotiable):
+- Font: Inter only (Google Fonts, weights 400–900)
+- Primary color: #14B9D6 (aqua) — used for CTAs and key accents
+- Hover on light: #ff8900 (orange)
+- Background: #ffffff
+- Text: #000000 headlines, #767676 body, #ababab captions
+- Nav: fixed, white background (rgba(255,255,255,0.80)), backdrop-filter blur(12px), subtle bottom border
+- Logo: use the actual logo image file — never recreate as text. Use logo-full-aqua.png at height 28px in nav
+- Hero: min-height 80vh, headline clamp(42px,6vw,76px) weight 900 tracking -2px, subhead clamp(18px,1.5vw,24px) weight 400
+- Section labels: 11px uppercase, letter-spacing 2px, aqua color
+- Section titles: clamp(28px,3.5vw,44px) weight 800
+- Max content width: 1160px centered
+- Section padding: 100px vertical, 48px horizontal
+- Card radius: 16px, button radius: 10px
+- Card hover: border glow + translateY(-3px)
+- Button hover: background shift to orange + translateY(-1px)
+- All transitions: 0.2–0.4s ease
+- Photography: always overlay (aqua 20% + grey 50%), never bare images
+- Responsive: stack at 900px, adjust at 600px
+
+REQUIRED SECTIONS:
+1. Nav (fixed, white background, logo left, links + CTA right)
+2. Hero (headline, subheadline, CTA button, 80vh)
+3. At least 2 content sections (features, stats, cards, testimonials)
+4. CTA section near bottom
+5. Footer (logo, copyright, links)
+
+OUTPUT: Single self-contained HTML file, all CSS inline except Google Fonts import.
+
+CONTENT TO USE:
+- Headline: [Your headline]
+- Subheadline: [Your subheadline]
+- CTA text: [Your CTA label]
+- Sections: [Describe what sections you need and any specific copy]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Consumer-facing pages, brand storytelling, product detail pages. Uses the recess.is-style white theme with orange hover accents.
+        </div>
+      </div>
+
+      <!-- ── Partner Landing Page Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon partner-icon">&#9830;</div>
+            <div>
+              <h4>Partner Co-Branded Page</h4>
+              <span class="prompt-tag">Customizable</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-partner')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-partner">Build a co-branded Recess x [PARTNER NAME] landing page with these exact specifications:
+
+THEME: Partner dark (navy background #0a0f1a with partner accent color)
+PARTNER: [Partner name]
+PARTNER ACCENT COLOR: [Partner's primary brand color hex, e.g. #E4002B for Kraft Heinz]
+GOAL: [Brand awareness / Lead generation / Case study / Event promotion]
+
+BRAND RULES (non-negotiable):
+- Font: Inter only (Google Fonts, weights 400–900)
+- Recess primary: #14B9D6 (aqua) — ALWAYS used for nav CTA + footer. Never replaced.
+- Partner accent: [Partner hex] — used for section highlights, card borders, secondary buttons
+- Background: #0a0f1a (navy)
+- Text: rgba(255,255,255,0.85) body, rgba(255,255,255,0.60) secondary
+- Nav: fixed, glassmorphism, "Recess x [Partner]" text next to logo
+- Logo: use the actual Recess logo image file — never recreate as text. Use logo-full-white.png at height 28px in nav
+- Hero: min-height 88vh, headline clamp(42px,6vw,76px) weight 900 tracking -2px
+- Section labels: 11px uppercase, letter-spacing 2px, partner accent color
+- Section titles: clamp(28px,3.5vw,44px) weight 800
+- Max content width: 1160px centered
+- Section padding: 100px vertical, 48px horizontal
+- Card radius: 16px, button radius: 10px
+- Recess aqua for primary CTAs, partner color for secondary accents/borders
+- All transitions: 0.2–0.4s ease
+- Photography: always overlay, never bare images
+- Responsive: stack at 900px, adjust at 600px
+
+CO-BRANDING RULES:
+- Recess logo always appears in nav and footer
+- Partner logo can appear in hero and a dedicated partner section
+- Recess aqua (#14B9D6) must remain the primary CTA color — partner color is supplementary
+- Use "Recess x [Partner]" format, not "[Partner] x Recess"
+
+REQUIRED SECTIONS:
+1. Nav (fixed, glassmorphism, Recess logo + "x Partner", CTA right)
+2. Hero (headline, subheadline, CTA, 88vh)
+3. Partner intro section (who they are, why this partnership)
+4. At least 1 content section (results, features, benefits)
+5. CTA section near bottom
+6. Footer (Recess logo, partner logo, copyright)
+
+OUTPUT: Single self-contained HTML file, all CSS inline except Google Fonts import.
+
+CONTENT TO USE:
+- Headline: [Your headline]
+- Subheadline: [Your subheadline]
+- CTA text: [Your CTA label]
+- Partner description: [Brief partner description]
+- Sections: [Describe what sections you need]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Co-branded partner campaigns. Recess DNA stays locked while the partner's accent color adapts the mood. Partner color never replaces Recess aqua in CTAs.
+        </div>
+      </div>
+
+      <!-- ── Quick Modification Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon generic-icon">&#9881;</div>
+            <div>
+              <h4>Modify an Existing Page</h4>
+              <span class="prompt-tag">Quick Edit</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-modify')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-modify">Modify this Recess landing page. Here is the current HTML:
+
+[Paste your current HTML file here]
+
+CHANGES NEEDED:
+- [Describe what you want changed]
+
+RULES YOU MUST FOLLOW (do not break these):
+- Keep ALL existing Recess brand tokens (colors, fonts, spacing) exactly as they are
+- Font must remain Inter only — do not add or change fonts
+- Colors must remain from the Recess token set: aqua #14B9D6, sea green #108DA3, orange #ff8900, navy #0a0f1a
+- Do not remove or alter the logo — it must stay as an image file, not text
+- Keep glassmorphism nav styling intact
+- Keep all hover effects (translateY, shadow grow, color shifts)
+- Maintain responsive breakpoints at 900px and 600px
+- Output must remain a single self-contained HTML file
+- Do not add any external dependencies beyond Google Fonts Inter
+
+OUTPUT: Return the complete modified HTML file.</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Updating copy, adding sections, or tweaking an existing page without accidentally breaking brand consistency.
+        </div>
+      </div>
+    </section>
+
     <!-- ━━━━━━━ HOW TO USE ━━━━━━━ -->
     <section class="usage-section">
       <h2>How to Use Templates</h2>
@@ -629,5 +1028,20 @@
       Recess Design System v5.6.0 &middot; Starter Templates
     </div>
   </main>
+
+  <script>
+    function copyPrompt(btn, preId) {
+      const pre = document.getElementById(preId);
+      const text = pre.textContent;
+      navigator.clipboard.writeText(text).then(function() {
+        btn.classList.add('copied');
+        btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> Copied!';
+        setTimeout(function() {
+          btn.classList.remove('copied');
+          btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg> Copy';
+        }, 2000);
+      });
+    }
+  </script>
 </body>
 </html>
