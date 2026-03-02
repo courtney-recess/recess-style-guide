@@ -774,7 +774,7 @@
     <!-- ━━━━━━━ PROMPT TEMPLATES ━━━━━━━ -->
     <section class="prompts-section">
       <h2>Prompt Templates</h2>
-      <p>Copy-paste these prompts into Claude to build brand-consistent landing pages. Each prompt includes all the rules, tokens, and structure needed — just fill in the brackets.</p>
+      <p>Copy-paste these prompts into Claude to build brand-consistent assets — landing pages, presentations, emails, and more. Each prompt includes all the rules, tokens, and structure needed — just fill in the brackets.</p>
 
       <!-- ── Dark Landing Page Prompt ── -->
       <div class="prompt-card">
@@ -1008,6 +1008,257 @@ OUTPUT: Return the complete modified HTML file.</pre>
         </div>
         <div class="prompt-description">
           <strong>Best for:</strong> Updating copy, adding sections, or tweaking an existing page without accidentally breaking brand consistency.
+        </div>
+      </div>
+
+      <!-- ── Presentation Dark Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon dark-icon">&#9646;</div>
+            <div>
+              <h4>Presentation Deck (Dark)</h4>
+              <span class="prompt-tag">Slides</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-ppt-dark')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-ppt-dark">Create a Recess presentation deck with these exact brand specifications:
+
+FORMAT: Google Slides / PowerPoint
+THEME: Dark
+PURPOSE: [Partner pitch / Internal review / Case study / Event recap]
+SLIDE COUNT: [Approximate number, e.g. 10-15]
+
+BRAND RULES (non-negotiable):
+
+COLORS:
+- Slide background: #0a0f1a (navy)
+- Primary accent: #14B9D6 (aqua) — used for highlights, key stats, icons, divider lines
+- Secondary accent: #108DA3 (sea green) — used for subtle accents, secondary elements
+- Text primary: rgba(255,255,255,0.85) — main body text
+- Text secondary: rgba(255,255,255,0.60) — supporting text, captions
+- Text muted: rgba(255,255,255,0.25) — footnotes, slide numbers
+- Card/box backgrounds: rgba(255,255,255,0.03) with rgba(255,255,255,0.06) border
+- Stat highlight numbers: #14B9D6 (aqua)
+- Success/positive: #1FBBA6 (forest green)
+- Warning/attention: #ff8900 (orange)
+- NEVER use any color not listed above
+
+TYPOGRAPHY:
+- Font: Inter only — NEVER use any other font
+- Slide title: 36-44px, weight 800, letter-spacing -0.5px
+- Subtitle / section label: 11-12px, uppercase, letter-spacing 2px, aqua color
+- Body text: 18-20px, weight 400, line-height 1.6
+- Stat numbers: 48-64px, weight 900, aqua color
+- Stat labels: 14px, weight 500, rgba(255,255,255,0.60)
+- Captions/footnotes: 12px, weight 400, rgba(255,255,255,0.25)
+- Bullet points: 16-18px, weight 400, use aqua bullets or dashes
+
+LAYOUT:
+- Widescreen 16:9 aspect ratio
+- Content margins: 80px from edges minimum
+- Consistent padding across all slides
+- Left-aligned text (never centered body text, titles may center on title slides)
+- Max 6 bullet points per slide
+- Max 30 words per bullet
+- One idea per slide — don't overcrowd
+
+LOGO:
+- Title slide: Recess logo centered or top-left, white version on dark bg
+- Internal slides: small white logo in bottom-left or bottom-right corner
+- NEVER recreate logo as text — always reference the actual logo file
+- NEVER alter, rotate, warp, or recolor the logo
+
+SLIDE TYPES TO INCLUDE:
+1. Title slide (logo, deck title, date, subtitle)
+2. Agenda / overview slide
+3. Section divider slides (aqua accent line, section name in uppercase)
+4. Content slides (text + supporting visual)
+5. Stat/metric slides (big number + context)
+6. Comparison slides (side-by-side or before/after)
+7. Quote/testimonial slides
+8. Closing slide (CTA or next steps + logo)
+
+PHOTOGRAPHY & IMAGERY:
+- Any photos should have a tinted overlay (aqua 20% + dark 50%)
+- Never use bare/unfiltered photos
+- Prefer simple icons over complex illustrations
+- Icons should be white or aqua, thin-line style
+
+DESIGN DETAILS:
+- Use subtle aqua divider lines (1-2px) to separate content sections
+- Rounded corners (12-16px) on any boxes, cards, or image frames
+- No drop shadows — use border/outline treatment instead
+- Consistent spacing between elements (24px minimum gaps)
+- Slide numbers in bottom-right, 12px, muted text color
+
+CONTENT TO USE:
+- Deck title: [Your title]
+- Audience: [Who is this for]
+- Key message: [The one thing they should remember]
+- Slides needed: [Describe each slide's content]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Partner pitches, investor decks, team presentations. Navy background with aqua accents — same visual DNA as the dark landing page.
+        </div>
+      </div>
+
+      <!-- ── Presentation Light Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon light-icon">&#9646;</div>
+            <div>
+              <h4>Presentation Deck (Light)</h4>
+              <span class="prompt-tag">Slides</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-ppt-light')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-ppt-light">Create a Recess presentation deck with these exact brand specifications:
+
+FORMAT: Google Slides / PowerPoint
+THEME: Light
+PURPOSE: [Partner pitch / Internal review / Case study / Event recap]
+SLIDE COUNT: [Approximate number, e.g. 10-15]
+
+BRAND RULES (non-negotiable):
+
+COLORS:
+- Slide background: #ffffff (white)
+- Primary accent: #14B9D6 (aqua) — highlights, key stats, icons, divider lines
+- Secondary accent: #ff8900 (orange) — callouts, secondary highlights, hover-state equivalent
+- Text primary: #000000 — headlines
+- Text body: #767676 — body text, descriptions
+- Text muted: #ababab — footnotes, slide numbers, captions
+- Card/box backgrounds: #F9FAFB with #DBE1E8 border
+- Stat highlight numbers: #14B9D6 (aqua)
+- Success/positive: #1FBBA6 (forest green)
+- Warning/attention: #ff8900 (orange)
+- NEVER use any color not listed above
+
+TYPOGRAPHY:
+- Font: Inter only — NEVER use any other font
+- Slide title: 36-44px, weight 800, letter-spacing -0.5px, #000000
+- Subtitle / section label: 11-12px, uppercase, letter-spacing 2px, aqua color
+- Body text: 18-20px, weight 400, line-height 1.6, #767676
+- Stat numbers: 48-64px, weight 900, aqua color
+- Stat labels: 14px, weight 500, #767676
+- Captions/footnotes: 12px, weight 400, #ababab
+- Bullet points: 16-18px, weight 400, use aqua bullets or dashes
+
+LAYOUT:
+- Widescreen 16:9 aspect ratio
+- Content margins: 80px from edges minimum
+- Consistent padding across all slides
+- Left-aligned text (never centered body text, titles may center on title slides)
+- Max 6 bullet points per slide
+- Max 30 words per bullet
+- One idea per slide — don't overcrowd
+
+LOGO:
+- Title slide: Recess logo centered or top-left, aqua version on white bg
+- Internal slides: small aqua logo in bottom-left or bottom-right corner
+- NEVER recreate logo as text — always reference the actual logo file
+- NEVER alter, rotate, warp, or recolor the logo
+
+SLIDE TYPES TO INCLUDE:
+1. Title slide (logo, deck title, date, subtitle)
+2. Agenda / overview slide
+3. Section divider slides (aqua accent line, section name in uppercase)
+4. Content slides (text + supporting visual)
+5. Stat/metric slides (big number + context)
+6. Comparison slides (side-by-side or before/after)
+7. Quote/testimonial slides
+8. Closing slide (CTA or next steps + logo)
+
+PHOTOGRAPHY & IMAGERY:
+- Any photos should have a light tinted overlay
+- Never use bare/unfiltered photos as full-bleed backgrounds
+- Prefer simple icons over complex illustrations
+- Icons should be aqua (#14B9D6) or grey (#5F6E81), thin-line style
+
+DESIGN DETAILS:
+- Use subtle aqua or grey divider lines (1-2px) to separate content
+- Rounded corners (12-16px) on any boxes, cards, or image frames
+- Light card shadows: 0 2px 8px rgba(0,0,0,0.06) — subtle only
+- Consistent spacing between elements (24px minimum gaps)
+- Slide numbers in bottom-right, 12px, #ababab
+
+CONTENT TO USE:
+- Deck title: [Your title]
+- Audience: [Who is this for]
+- Key message: [The one thing they should remember]
+- Slides needed: [Describe each slide's content]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Consumer-facing presentations, brand storytelling, team all-hands. White background with aqua + orange accents — same feel as the light landing page.
+        </div>
+      </div>
+
+      <!-- ── Email / One-Pager Prompt ── -->
+      <div class="prompt-card">
+        <div class="prompt-card-header">
+          <div class="prompt-label">
+            <div class="prompt-icon generic-icon">&#9993;</div>
+            <div>
+              <h4>Email / One-Pager</h4>
+              <span class="prompt-tag">Multi-Use</span>
+            </div>
+          </div>
+          <button class="copy-btn" onclick="copyPrompt(this, 'prompt-email')">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg>
+            Copy
+          </button>
+        </div>
+        <div class="prompt-code">
+          <pre id="prompt-email">Write Recess-branded content with these exact brand voice and formatting rules:
+
+FORMAT: [Marketing email / Partner one-pager / Sales leave-behind / Newsletter]
+AUDIENCE: [Who is reading this]
+GOAL: [What action should they take after reading]
+
+BRAND VOICE (non-negotiable):
+- Personality: playful, confident, inclusive, wellness-forward
+- Tone: casual but informed, optimistic without hype, direct not corporate
+- Active voice always — never passive
+- Short sentences preferred — keep paragraphs to 2-3 sentences max
+- Plain language — no jargon, no buzzwords, no "synergy" or "leverage"
+- Contractions are fine (we're, it's, don't)
+- Never use exclamation marks more than once per piece
+- Headlines should be punchy and benefit-driven, not clever for clever's sake
+
+FORMATTING:
+- Headline: bold, concise, benefit-first (max 8 words)
+- Subheadline: one sentence expanding on the headline
+- Body: scannable — use short paragraphs, bullet points, bold key phrases
+- CTA: clear single action, direct language ("See the results" not "Click here to learn more")
+- Stats: lead with the number, make it big and bold (e.g., "42% increase" not "We saw a forty-two percent increase")
+
+COLOR REFERENCES (for any HTML email or designed one-pager):
+- Primary accent: #14B9D6 (aqua) — CTA buttons, links, highlights
+- Headlines: #000000 on light / rgba(255,255,255,0.85) on dark
+- Body text: #767676 on light / rgba(255,255,255,0.60) on dark
+- Background: #ffffff (light) or #0a0f1a (dark)
+- Button: #14B9D6 background, white text, rounded corners
+
+CONTENT TO USE:
+- Topic: [What is this about]
+- Key points: [Main messages to convey]
+- CTA: [What should the reader do next]
+- Stats/proof points: [Any numbers or results to highlight]</pre>
+        </div>
+        <div class="prompt-description">
+          <strong>Best for:</strong> Marketing emails, partner one-pagers, sales leave-behinds, newsletters. Ensures the Recess voice and formatting stays consistent across written content.
         </div>
       </div>
     </section>
