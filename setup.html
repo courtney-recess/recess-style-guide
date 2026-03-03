@@ -727,15 +727,21 @@ Before designing any slides, ask:
 
 ⚠️ **CRITICAL: ALWAYS use the actual logo PNG files from the brand/ folder. NEVER generate, draw, recreate, or AI-create any logo. If you cannot embed the file, use a placeholder rectangle with "[Recess Logo]" text.**
 
-**Logo files:**
-- `brand/logo-full-white.png` → Full wordmark, white (dark bg title/closing slides)
-- `brand/logo-full-aqua.png` → Full wordmark, aqua (light bg title/closing slides)
-- `brand/logo-icon-white.png` → Icon only, white (dark bg content slides)
-- `brand/logo-icon-aqua.png` → Icon only, aqua (light bg content slides)
+**Logo files (with pixel dimensions — MUST match aspect ratio when sizing):**
+- `brand/logo-full-white.png` → 2812×586px, ratio 4.80:1 (dark bg title/closing)
+- `brand/logo-full-aqua.png` → 1426×313px, ratio 4.56:1 (light bg title/closing)
+- `brand/logo-icon-white.png` → 501×586px, ratio 0.85:1, TALLER than wide (dark bg content)
+- `brand/logo-icon-aqua.png` → 501×586px, ratio 0.85:1, TALLER than wide (light bg content)
+
+**PPTX sizing rule (CRITICAL — prevents stretching):**
+Container dimensions MUST match the aspect ratio. Calculate: width = height × ratio.
+- Wordmark: 0.50" tall × 2.40" wide (NOT 1.60", NOT 3.00")
+- Icon: 0.30" tall × 0.26" wide (NOT 0.30"×0.30" — icons are taller than wide!)
+- NEVER use square containers for non-square images
 
 **Placement:**
-- **Title/cover slide:** Full wordmark in the **upper left corner**, large (~48px height)
-- **All other content slides:** Icon only in the **lower right corner**, small (~20-24px)
+- **Title/cover slide:** Full wordmark in the **upper left corner**, 0.50" × 2.40"
+- **All other content slides:** Icon only in the **lower right corner**, 0.30" × 0.26"
 - **Closing slide:** Full wordmark, large, centered or upper left
 - **Dark slides** = white logo files. **Light slides** = aqua logo files.
 - **150% clearance** around the logo
